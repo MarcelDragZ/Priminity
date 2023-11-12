@@ -1,0 +1,24 @@
+<nav class="menu" (mouseleave)="showAdvancedAboutMenu(false)">
+
+  <div class="logo" style="display: flex; align-items: center; cursor: pointer; position: absolute; left: 20%;"
+    (click)="changeRoute('home')">
+    <img src="/assets/img/logo_simply_red.png">
+    <span class="logo_text" style="font-size: 24px; font-weight: bold; color: red;">Priminity</span>
+  </div>
+
+  <div class="router_links">
+    <a class="border-bottom" (click)="showAdvancedAboutMenu(true)" (mouseenter)="showAdvancedAboutMenu(true)">About<span
+        style="font-size: 12px;">▼</span></a>
+    <!-- <a (mouseenter)="showAdvancedAboutMenu(false)" class="border-bottom" (click)="changeRoute('news')">News</a> -->
+    <a (mouseenter)="showAdvancedAboutMenu(false)" class="border-bottom" (click)="changeRoute('contact')">Kontakt</a>
+    <a (mouseenter)="showAdvancedAboutMenu(false)" class="border-bottom" href="https://priminity-store.myspreadshop.de/"
+      target="_blank">Shop</a>
+
+  </div>
+  <div *ngIf="toggleAdvancedAboutMenu" (mouseleave)="showAdvancedAboutMenu(false)" class="advances_about_menu"
+    style="display: flex; flex-direction: column; margin-bottom: -250px; z-index: 1;">
+    <a style="z-index: 1;" class="border-bottom hover" (click)="changeRoute('teammembers')">Teammitglieder</a>
+    <a style="z-index: 1;" class="border-bottom hover" (click)="changeRoute('teams')">Teams</a>
+    <a style="z-index: 1;" class="border-bottom hover" (click)="changeRoute('logos')">Logos</a>
+  </div>
+</nav>

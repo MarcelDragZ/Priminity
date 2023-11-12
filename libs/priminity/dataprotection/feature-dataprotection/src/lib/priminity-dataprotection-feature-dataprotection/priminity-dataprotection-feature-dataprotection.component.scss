@@ -1,0 +1,12 @@
+.dataprotection_container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  min-height: calc(100vh - 260px);
+  display: flex;
+  justify-content: center;
+  p {
+    width: 75%;
+    color: white;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,15 @@
+<priminity-priminity-shared-banner [bannerName]="bannerName" />
+
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 50px; margin-bottom: 50px;">
+  <div class="logo_container">
+    <img *ngFor="let simplyLogo of simplyLogos" src="/assets/img/{{ simplyLogo }}.png">
+  </div>
+
+  <div class="logo_container">
+    <img *ngFor="let avatarLogo of avatarLogos" src="/assets/img/{{ avatarLogo }}.png">
+  </div>
+
+  <div class="logo_container">
+    <img *ngFor="let specialLogo of specialLogos" src="/assets/img/{{ specialLogo }}.png">
+  </div>
+</div>

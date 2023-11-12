@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "priminity-backup": {
+      "hosting": {
+        "pryaz": [
+          "priminity-backup"
+        ]
+      }
+    },
+    "priminity-fd7ad": {
+      "hosting": {
+        "pryaz": [
+          "priminity-fd7ad"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "priminity-backup"
+  }
+}

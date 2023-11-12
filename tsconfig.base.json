@@ -1,0 +1,90 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@priminity/priminity/contact/feature-contact": [
+        "libs/priminity/contact/feature-contact/src/index.ts"
+      ],
+      "@priminity/priminity/dataprotection/feature-dataprotection": [
+        "libs/priminity/dataprotection/feature-dataprotection/src/index.ts"
+      ],
+      "@priminity/priminity/home/feature-home": [
+        "libs/priminity/home/feature-home/src/index.ts"
+      ],
+      "@priminity/priminity/home/slideshow": [
+        "libs/priminity/home/slideshow/src/index.ts"
+      ],
+      "@priminity/priminity/home/themes": [
+        "libs/priminity/home/themes/src/index.ts"
+      ],
+      "@priminity/priminity/imprint/feature-imprint": [
+        "libs/priminity/imprint/feature-imprint/src/index.ts"
+      ],
+      "@priminity/priminity/logos/feature-logos": [
+        "libs/priminity/logos/feature-logos/src/index.ts"
+      ],
+      "@priminity/priminity/news/feature-news": [
+        "libs/priminity/news/feature-news/src/index.ts"
+      ],
+      "@priminity/priminity/rules/feature-rules": [
+        "libs/priminity/rules/feature-rules/src/index.ts"
+      ],
+      "@priminity/priminity/shared/banner": [
+        "libs/priminity/shared/banner/src/index.ts"
+      ],
+      "@priminity/priminity/shared/card/feature-card": [
+        "libs/priminity/shared/card/feature-card/src/index.ts"
+      ],
+      "@priminity/priminity/shared/footer": [
+        "libs/priminity/shared/footer/src/index.ts"
+      ],
+      "@priminity/priminity/shared/menu": [
+        "libs/priminity/shared/menu/src/index.ts"
+      ],
+      "@priminity/priminity/teammembers/feature-teammembers": [
+        "libs/priminity/teammembers/feature-teammembers/src/index.ts"
+      ],
+      "@priminity/priminity/teams/feature-teams": [
+        "libs/priminity/teams/feature-teams/src/index.ts"
+      ],
+      "@priminity/pryaz/forgot-password/feature-forgot-password": [
+        "libs/pryaz/forgot-password/feature-forgot-password/src/index.ts"
+      ],
+      "@priminity/pryaz/forgot-password/ui-forgot-password": [
+        "libs/pryaz/forgot-password/ui-forgot-password/src/index.ts"
+      ],
+      "@priminity/pryaz/login/feature-login": [
+        "libs/pryaz/login/feature-login/src/index.ts"
+      ],
+      "@priminity/pryaz/login/ui-login": [
+        "libs/pryaz/login/ui-login/src/index.ts"
+      ],
+      "@priminity/pryaz/registry/feature-registry": [
+        "libs/pryaz/registry/feature-registry/src/index.ts"
+      ],
+      "@priminity/pryaz/registry/ui-registry": [
+        "libs/pryaz/registry/ui-registry/src/index.ts"
+      ],
+      "@priminity/shared/environments/classes": [
+        "libs/shared/environments/classes/src/index.ts"
+      ],
+      "@priminity/shared/environments/models": [
+        "libs/shared/environments/models/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

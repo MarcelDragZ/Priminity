@@ -1,0 +1,232 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: red;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(40, 40, 40, 1);
+}
+
+* {
+  scrollbar-color: red #f0f0f0;
+}
+
+/* RED */
+
+.pryaz-background-red-10 {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+.pryaz-background-red-20 {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+.pryaz-background-red-30 {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+.pryaz-background-red-40 {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+.pryaz-background-red-50 {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.pryaz-background-red-60 {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+.pryaz-background-red-70 {
+  background-color: rgba(255, 0, 0, 0.7);
+}
+.pryaz-background-red-80 {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+.pryaz-background-red-90 {
+  background-color: rgba(255, 0, 0, 0.9);
+}
+.pryaz-background-red-100 {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+/* RED */
+
+/* LIGHT-RED */
+
+.pryaz-background-light-red-10 {
+  background-color: rgba(255, 50, 50, 0.1);
+}
+.pryaz-background-light-red-20 {
+  background-color: rgba(255, 50, 50, 0.2);
+}
+.pryaz-background-light-red-30 {
+  background-color: rgba(255, 50, 50, 0.3);
+}
+.pryaz-background-light-red-40 {
+  background-color: rgba(255, 50, 50, 0.4);
+}
+.pryaz-background-light-red-50 {
+  background-color: rgba(255, 50, 50, 0.5);
+}
+.pryaz-background-light-red-60 {
+  background-color: rgba(255, 50, 50, 0.6);
+}
+.pryaz-background-light-red-70 {
+  background-color: rgba(255, 50, 50, 0.7);
+}
+.pryaz-background-light-red-80 {
+  background-color: rgba(255, 50, 50, 0.8);
+}
+.pryaz-background-light-red-90 {
+  background-color: rgba(255, 50, 50, 0.9);
+}
+.pryaz-background-light-red-100 {
+  background-color: rgb(255, 50, 50);
+}
+
+/* LIGHT-RED */
+
+/* DARK-RED */
+
+.pryaz-background-light-red-10 {
+  background-color: rgba(170, 0, 0, 0.1);
+}
+.pryaz-background-light-red-20 {
+  background-color: rgba(170, 0, 0, 0.2);
+}
+.pryaz-background-light-red-30 {
+  background-color: rgba(170, 0, 0, 0.3);
+}
+.pryaz-background-light-red-40 {
+  background-color: rgba(170, 0, 0, 0.4);
+}
+.pryaz-background-light-red-50 {
+  background-color: rgba(170, 0, 0, 0.5);
+}
+.pryaz-background-light-red-60 {
+  background-color: rgba(170, 0, 0, 0.6);
+}
+.pryaz-background-light-red-70 {
+  background-color: rgba(170, 0, 0, 0.7);
+}
+.pryaz-background-light-red-80 {
+  background-color: rgba(170, 0, 0, 0.8);
+}
+.pryaz-background-light-red-90 {
+  background-color: rgba(170, 0, 0, 0.9);
+}
+.pryaz-background-light-red-100 {
+  background-color: rgb(170, 0, 0);
+}
+
+/* DARK-RED */
+
+/* BLACK */
+
+.pryaz-background-black-10 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.pryaz-background-black-20 {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.pryaz-background-black-30 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.pryaz-background-black-40 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.pryaz-background-black-50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.pryaz-background-black-60 {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.pryaz-background-black-70 {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.pryaz-background-black-80 {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.pryaz-background-black-90 {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.pryaz-background-black-100 {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+/* BLACK */
+/* DARK-GRAY */
+
+.pryaz-background-dark-gray-10 {
+  background-color: rgba(20, 20, 20, 0.1);
+}
+.pryaz-background-dark-gray-20 {
+  background-color: rgba(20, 20, 20, 0.2);
+}
+.pryaz-background-dark-gray-30 {
+  background-color: rgba(20, 20, 20, 0.3);
+}
+.pryaz-background-dark-gray-40 {
+  background-color: rgba(20, 20, 20, 0.4);
+}
+.pryaz-background-dark-gray-50 {
+  background-color: rgba(20, 20, 20, 0.5);
+}
+.pryaz-background-dark-gray-60 {
+  background-color: rgba(20, 20, 20, 0.6);
+}
+.pryaz-background-dark-gray-70 {
+  background-color: rgba(20, 20, 20, 0.7);
+}
+.pryaz-background-dark-gray-80 {
+  background-color: rgba(20, 20, 20, 0.8);
+}
+.pryaz-background-dark-gray-90 {
+  background-color: rgba(20, 20, 20, 0.9);
+}
+.pryaz-background-dark-gray-100 {
+  background-color: rgba(20, 20, 20, 1);
+}
+
+/* DARK-GRAY */
+/* LIGHT-GRAY */
+
+.pryaz-background-light-gray-10 {
+  background-color: rgba(40, 40, 40, 0.1);
+}
+.pryaz-background-light-gray-20 {
+  background-color: rgba(40, 40, 40, 0.2);
+}
+.pryaz-background-light-gray-30 {
+  background-color: rgba(40, 40, 40, 0.3);
+}
+.pryaz-background-light-gray-40 {
+  background-color: rgba(40, 40, 40, 0.4);
+}
+.pryaz-background-light-gray-50 {
+  background-color: rgba(40, 40, 40, 0.5);
+}
+.pryaz-background-light-gray-60 {
+  background-color: rgba(40, 40, 40, 0.6);
+}
+.pryaz-background-light-gray-70 {
+  background-color: rgba(40, 40, 40, 0.7);
+}
+.pryaz-background-light-gray-80 {
+  background-color: rgba(40, 40, 40, 0.8);
+}
+.pryaz-background-light-gray-90 {
+  background-color: rgba(40, 40, 40, 0.9);
+}
+.pryaz-background-light-gray-100 {
+  background-color: rgba(40, 40, 40, 1);
+}
+
+/* LIGHT-GRAY */

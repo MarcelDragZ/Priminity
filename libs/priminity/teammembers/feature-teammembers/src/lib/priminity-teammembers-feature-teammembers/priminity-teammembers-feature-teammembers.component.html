@@ -1,0 +1,31 @@
+<priminity-priminity-shared-banner [bannerName]="bannerName" />
+
+
+<div
+  style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 50px; margin-bottom: 50px;">
+
+  <div class="card_container">
+    <ng-container *ngFor="let teammember of teammembers">
+      <priminity-priminity-shared-card-feature-card *ngIf="teammember.position === 'Admin'"
+        [position]="teammember.position" [name]="teammember.name" [nickname]="teammember.nickname"
+        [steamlink]="teammember.steamlink" [twitchlink]="teammember.twitchlink" />
+    </ng-container>
+  </div>
+
+  <div class="card_container">
+    <ng-container *ngFor="let teammember of teammembers">
+      <priminity-priminity-shared-card-feature-card *ngIf="teammember.position === 'Supervisor'"
+        [position]="teammember.position" [name]="teammember.name" [nickname]="teammember.nickname"
+        [steamlink]="teammember.steamlink" [twitchlink]="teammember.twitchlink" />
+    </ng-container>
+  </div>
+
+  <div class="card_container">
+    <ng-container *ngFor="let teammember of teammembers">
+      <priminity-priminity-shared-card-feature-card *ngIf="teammember.position === 'Mod'"
+        [position]="teammember.position" [name]="teammember.name" [nickname]="teammember.nickname"
+        [steamlink]="teammember.steamlink" [twitchlink]="teammember.twitchlink" />
+    </ng-container>
+  </div>
+
+</div>

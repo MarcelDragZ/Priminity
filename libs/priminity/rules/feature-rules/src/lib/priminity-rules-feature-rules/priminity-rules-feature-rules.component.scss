@@ -1,0 +1,46 @@
+.rules_container {
+  min-height: calc(100vh - 510px);
+  margin-top: 50px;
+  margin-bottom: 49px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.rule {
+  color: white;
+  margin-top: 25px;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  div {
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgba(255, 0, 0, 0);
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      border-bottom: 2px solid red;
+    }
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.highlight {
+  color: red !important;
+}

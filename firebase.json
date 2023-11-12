@@ -1,0 +1,14 @@
+{
+  "hosting": [
+    {
+      "target": "priminity",
+      "source": ".",
+      "frameworksBackend": {}
+    },
+    {
+      "target": "pryaz",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

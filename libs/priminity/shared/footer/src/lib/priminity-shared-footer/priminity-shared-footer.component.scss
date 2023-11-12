@@ -1,0 +1,38 @@
+* {
+  color: white;
+}
+
+.footer {
+  height: 80px;
+  background-color: rgb(20, 20, 20);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0px 2px 12px 13px rgba(0, 0, 0, 0.799);
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 850px) {
+  .links:nth-child(3) {
+    display: none !important;
+  }
+}
+
+@media (max-width: 550px) {
+  .footer {
+    font-size: 12px;
+  }
+  .links {
+    width: 230px;
+  }
+}

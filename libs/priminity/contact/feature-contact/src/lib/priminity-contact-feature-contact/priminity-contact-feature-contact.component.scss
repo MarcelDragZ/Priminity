@@ -1,0 +1,28 @@
+.contact_container {
+  color: white;
+  min-height: calc(100vh - 510px);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  img {
+    margin-right: 10px;
+    height: 30px;
+    object-fit: contain;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    width: 120px;
+    color: red;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    padding-bottom: 5px;
+    border-bottom: 2px solid rgba(255, 0, 0, 0);
+    &:hover {
+      border-bottom: 2px solid red;
+      transform: translateX(-15px);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}

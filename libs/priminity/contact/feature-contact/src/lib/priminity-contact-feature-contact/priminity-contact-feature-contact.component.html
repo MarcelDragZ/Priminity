@@ -1,0 +1,26 @@
+<priminity-priminity-shared-banner [bannerName]="bannerName" />
+
+
+
+<div class="contact_container">
+  <div style="width: 55%;">
+
+    <h2>Melde dich bei Priminity!</h2>
+    <p style="margin-bottom: 50px;">
+      Bei Fragen oder Anliegen kannst du dich gerne bei uns im Teamspeak einfinden oder schreibst uns eine Email unter
+      info@priminity.net.
+      Wenn du Priminity beitreten möchtest, dann schau dich doch gerne auf unseren Sozialen Netzwerken um !
+      Alle weiteren Kanäle:
+    </p>
+
+    <ng-container *ngFor="let contact of contacts">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <p>{{ contact.title }}:</p>
+        <a href="{{ contact.link }}" target="_blank">
+          <img src="/assets/img/{{ contact.image }}.png">{{
+          contact.title }}</a>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

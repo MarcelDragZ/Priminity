@@ -1,0 +1,19 @@
+.logo_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  min-width: 75%;
+  max-width: 75%;
+  margin-top: 50px;
+}
+
+img {
+  margin-top: 15px;
+  width: 250px;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.05) translate(10px, 2%);
+  }
+}

@@ -1,0 +1,13 @@
+.card_container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 75%;
+  margin-top: 50px;
+}
+
+@media (max-width: 700px) {
+  .card_container {
+    align-items: center;
+    flex-direction: column;
+  }
+}

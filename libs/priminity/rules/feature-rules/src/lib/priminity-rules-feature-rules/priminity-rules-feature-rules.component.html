@@ -1,0 +1,10 @@
+<priminity-priminity-shared-banner [bannerName]="bannerName" />
+
+<div class="rules_container">
+
+  <div class="rule" *ngFor="let rule of rules; let i = index">
+    <div [class.highlight]="toggleNumber === i" (click)="toggleRule(i)">{{ rule.title }} {{ rule.marker }}</div>
+    <p *ngIf="toggleNumber === i" [class.fade-in]="toggleNumber === i" [innerHTML]="rule.description"></p>
+  </div>
+
+</div>
