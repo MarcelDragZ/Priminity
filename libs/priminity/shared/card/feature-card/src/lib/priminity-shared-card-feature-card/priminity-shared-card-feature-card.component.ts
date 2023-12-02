@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriminitySharedCardFeatureCardComponent {
-  @Input() nickname!: string;
-  @Input() name!: string;
-  @Input() position!: string;
-  @Input() steamlink!: string;
-  @Input() twitchlink!: string;
+  @Input() userName?: string;
+  @Input() name?: string;
+  @Input() position?: string;
+  @Input() steamLink?: string;
+  @Input() twitchLink?: string;
 }
