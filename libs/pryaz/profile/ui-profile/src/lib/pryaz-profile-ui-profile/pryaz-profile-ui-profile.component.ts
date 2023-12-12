@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
 import {
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
+import { FormsModule } from '@angular/forms';
+import { ColorPickerModule } from 'ngx-color-picker';
+
 @Component({
-  selector: 'priminity-pryaz-teammember-ui-detail',
+  selector: 'priminity-pryaz-profile-ui-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ColorPickerModule],
   template: `
     <div
       class="flex justify-between  items-center m-5 border-userColor border-b-2 rounded"
@@ -20,44 +21,10 @@ import {
           class="flex flex-col justify-around ml-5 text-white font-bold h-36"
         >
           <div>
-            <select
-              *ngIf="editProfile"
-              name="editTeamMember.position"
-              class="bg-userColor text-white rounded p-1 cursor-pointer"
-              [(ngModel)]="editTeamMember.position"
-            >
-              <option selected value="{{ editTeamMember.position }}">
-                {{ editTeamMember.position }}
-              </option>
-              <option *ngIf="editTeamMember.position !== 'Admin'" value="Admin">
-                Admin
-              </option>
-              <option
-                *ngIf="editTeamMember.position !== 'Supervisor'"
-                value="Supervisor"
-              >
-                Supervisor
-              </option>
-              <option
-                *ngIf="editTeamMember.position !== 'Manager'"
-                value="Manager"
-              >
-                Manager
-              </option>
-              <option *ngIf="editTeamMember.position !== 'Mod'" value="Mod">
-                Mod
-              </option>
-              <option
-                *ngIf="editTeamMember.position !== 'Trial-Mod'"
-                value="Trial-Mod"
-              >
-                Trial-Mod
-              </option>
-            </select>
-            <span *ngIf="!editProfile">{{ editTeamMember.position }}</span>
+            <span>{{ specificTeamMember?.position }}</span>
             <div
               class="flex
-             flex-col"
+           flex-col"
             >
               <input
                 *ngIf="editProfile"
@@ -78,15 +45,14 @@ import {
               >
             </div>
           </div>
-          <span
-            class="text-center rounded p-0.5"
-            [ngClass]="
-              specificTeamMember?.active ? 'bg-green-600' : 'bg-red-600'
-            "
-            >{{
-              specificTeamMember?.active ? 'Aktiviert' : 'Deaktiviert'
-            }}</span
-          >
+          <span class="mt-5" *ngIf="editProfile">Wähle Farbschema</span>
+          <input
+            class="rounded cursor-pointer"
+            *ngIf="editProfile"
+            [cpAlphaChannel]="'disabled'"
+            [(colorPicker)]="editTeamMember.colorScheme!"
+            [style.background]="editTeamMember.colorScheme"
+          />
         </div>
       </div>
       <div class="m-5 text-white font-bold">
@@ -113,16 +79,6 @@ import {
             class="bg-userColor rounded p-0.5 hover:opacity-80 transition-all"
           >
             Profil bearbeiten
-          </button>
-          <button
-            (click)="toggleTeamMemberActive()"
-            [ngClass]="
-              specificTeamMember?.active ? 'bg-red-600' : 'bg-green-600'
-            "
-            class=" rounded mt-2 p-0.5 hover:opacity-80 transition-all"
-          >
-            Teammitglied
-            {{ specificTeamMember?.active ? 'Deaktivieren' : 'Aktivieren' }}
           </button>
         </div>
       </div>
@@ -298,7 +254,7 @@ import {
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PryazTeammemberUiDetailComponent {
+export class PryazProfileUiProfileComponent {
   @Input() teamMemberId!: string;
   @Input() set specificTeamMember(value: TeamMemberInterface | null) {
     this._specificTeamMember = value;
@@ -306,10 +262,10 @@ export class PryazTeammemberUiDetailComponent {
       this.editTeamMember = {
         name: value.name,
         userName: value.userName,
-        position: value.position,
         email: value.email,
         phone: value.phone || null,
         birth: value.birth,
+        colorScheme: value.colorScheme,
         steamLink: value.steamLink,
         twitchLink: value.twitchLink,
         youtubeLink: value.youtubeLink,
@@ -328,6 +284,7 @@ export class PryazTeammemberUiDetailComponent {
   _specificTeamMember!: TeamMemberInterface | null;
   editTeamMember: Partial<TeamMemberInterface> = {};
   editProfile = false;
+  colorScheme = '';
 
   toggleEditProfile(toggle: boolean) {
     this.editProfile = toggle;
@@ -336,13 +293,5 @@ export class PryazTeammemberUiDetailComponent {
   async saveEditProfile() {
     this.toggleEditProfile(false);
     await this.teamMember.updateItem(this.teamMemberId, this.editTeamMember);
-  }
-
-  async toggleTeamMemberActive() {
-    if (this.specificTeamMember?.active === true) {
-      await this.teamMember.updateItem(this.teamMemberId, { active: false });
-    } else {
-      await this.teamMember.updateItem(this.teamMemberId, { active: true });
-    }
   }
 }

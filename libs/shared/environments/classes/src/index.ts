@@ -1,5 +1,4 @@
 export * from './lib/shared-environments-classes/class.changelog';
-export * from './lib/shared-environments-classes/class.deaktivatedteammember';
 export * from './lib/shared-environments-classes/class.faq';
 export * from './lib/shared-environments-classes/class.imagefilter';
 export * from './lib/shared-environments-classes/class.meeting';

@@ -88,6 +88,12 @@
       "@priminity/pryaz/organisation/ui-organisation": [
         "libs/pryaz/organisation/ui-organisation/src/index.ts"
       ],
+      "@priminity/pryaz/profile/feature-profile": [
+        "libs/pryaz/profile/feature-profile/src/index.ts"
+      ],
+      "@priminity/pryaz/profile/ui-profile": [
+        "libs/pryaz/profile/ui-profile/src/index.ts"
+      ],
       "@priminity/pryaz/registry/feature-registry": [
         "libs/pryaz/registry/feature-registry/src/index.ts"
       ],

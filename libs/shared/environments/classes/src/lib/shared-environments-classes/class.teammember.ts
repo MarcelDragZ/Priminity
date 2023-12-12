@@ -7,9 +7,12 @@ export interface TeamMemberInterface {
   userName: string;
   name: string;
   email: string;
+  phone: number | null;
   password: string;
   position: string;
+  avatar: string;
   colorScheme: string;
+  birth: number | null;
   active: boolean;
   steamLink: string;
   twitchLink: string;
@@ -17,7 +20,6 @@ export interface TeamMemberInterface {
   instagramLink: string;
   tiktokLink: string;
 }
-
 export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
   constructor() {
     super();
@@ -41,7 +43,7 @@ export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
             Object.entries(teamMember ?? {}).find(
               (value) =>
                 value[1].userName.toLowerCase() ===
-                enteredTeamMember.userName?.toLowerCase()
+                enteredTeamMember.userName?.toLowerCase(),
             );
           if (
             foundTeamMember &&
@@ -49,15 +51,15 @@ export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
             enteredTeamMember.password !== undefined &&
             this.compareHash(
               enteredTeamMember.password,
-              foundTeamMember[1].password
+              foundTeamMember[1].password,
             )
           ) {
             return foundTeamMember as [string, TeamMemberInterface];
           } else {
             return null;
           }
-        })
-      )
+        }),
+      ),
     );
   }
 
@@ -75,8 +77,8 @@ export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
           } else {
             return null;
           }
-        })
-      )
+        }),
+      ),
     );
   }
 
@@ -93,7 +95,7 @@ export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
         } else {
           return null;
         }
-      })
+      }),
     );
   }
 

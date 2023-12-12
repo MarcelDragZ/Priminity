@@ -74,7 +74,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         >
       </div>
 
-      <div class="border-b-2 border-neutral-500 border-opacity-20 mt-5"></div>
+      <div class="border-b-2 border-neutral-500 border-opacity-20 mt-5 "></div>
 
       <div class="flex flex-col ml-3 mr-3 mt-5">
         <a
@@ -214,10 +214,6 @@ export class PryazSharedMenuComponent {
       this.advancedMenuIcon = '▼';
       this.advancedMenu = true;
     }
-  }
-
-  test() {
-    console.log('test');
   }
 
   logout() {

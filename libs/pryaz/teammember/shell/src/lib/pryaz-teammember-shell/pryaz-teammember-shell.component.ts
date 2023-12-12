@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { ActiveRouteIdResolver } from '@priminity/shared/resolvers/active-teammember-resolver';
 
 export const PryazTeammemberRoutes: Route[] = [
   {
@@ -14,6 +15,9 @@ export const PryazTeammemberRoutes: Route[] = [
       import('@priminity/pryaz/teammember/feature-detail').then(
         (m) => m.PryazTeammemberFeatureDetailComponent
       ),
+    resolve: {
+      activeRouteId: ActiveRouteIdResolver,
+    },
   },
   {
     path: 'create',

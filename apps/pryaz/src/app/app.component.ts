@@ -8,6 +8,7 @@ import {
   Solver,
   TeamMember,
 } from '@priminity/shared/environments/classes';
+import { map } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -22,17 +23,32 @@ export class AppComponent {
 
   teamMember = new TeamMember();
 
-  activeTeamMember$ = this.teamMember.syncValidTeamMember();
+  rgbColor: { r: number; g: number; b: number } = {
+    r: 255,
+    g: 0,
+    b: 0,
+  };
 
-  constructor() {
-    const r = 50;
-    const g = 120;
-    const b = 250;
-    document.documentElement.style.setProperty(
-      '--dynamic-color',
-      `${r}, ${g}, ${b}`
-    );
-    this.imageColor(r, g, b);
+  activeTeamMember$ = this.teamMember.syncValidTeamMember().pipe(
+    map((teamMember) => {
+      this.getRgbColor(teamMember ? teamMember[1].colorScheme : '');
+      document.documentElement.style.setProperty(
+        '--dynamic-color',
+        `${this.rgbColor.r}, ${this.rgbColor.g}, ${this.rgbColor.b}`
+      );
+      this.imageColor(this.rgbColor.r, this.rgbColor.g, this.rgbColor.b);
+      return teamMember;
+    })
+  );
+
+  getRgbColor(hexColor: string) {
+    if (hexColor === '') {
+      return;
+    } else {
+      this.rgbColor.r = parseInt(hexColor.substr(1, 2), 16);
+      this.rgbColor.g = parseInt(hexColor.substr(3, 2), 16);
+      this.rgbColor.b = parseInt(hexColor.substr(5, 2), 16);
+    }
   }
 
   imageColor(r: number, g: number, b: number) {

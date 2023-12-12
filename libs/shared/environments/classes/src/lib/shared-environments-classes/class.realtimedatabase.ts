@@ -1,4 +1,4 @@
-import { inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   Database,
   getDatabase,
@@ -13,6 +13,10 @@ import {
   off,
 } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root', // oder in einem spezifischen Modul
+})
 export abstract class RealtimeDatabase<TData> {
   database: Database = inject(Database);
   db: Database = getDatabase();
@@ -20,7 +24,7 @@ export abstract class RealtimeDatabase<TData> {
 
   getItems$() {
     const databaseRef = ref(this.db, `${this.dataBaseValue}/`);
-    off(databaseRef);
+    // off(databaseRef); // to delete the reference to database
     return new Observable((subscriber) => {
       onValue(
         databaseRef,
@@ -38,7 +42,7 @@ export abstract class RealtimeDatabase<TData> {
   getLimitedItems$() {
     const databaseRef = ref(this.db, `${this.dataBaseValue}/`);
     const limitedQuery = query(databaseRef, limitToFirst(20));
-    off(databaseRef);
+    // off(databaseRef); // to delete the reference to database
     return new Observable((subscriber) => {
       onValue(
         limitedQuery,
@@ -55,7 +59,7 @@ export abstract class RealtimeDatabase<TData> {
 
   getSpecificItem$(databaseId: string) {
     const databaseRef = ref(this.db, `${this.dataBaseValue}/` + databaseId); // + databaseid to get specific user
-    off(databaseRef);
+    // off(databaseRef); // to delete the reference to database
     return new Observable((subscriber) => {
       onValue(
         databaseRef,

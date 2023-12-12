@@ -8,24 +8,23 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map } from 'rxjs';
 
-import { PryazTeammemberUiDetailComponent } from '@priminity/pryaz/teammember/ui-detail';
 import {
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
-
+import { PryazProfileUiProfileComponent } from '@priminity/pryaz/profile/ui-profile';
 @Component({
-  selector: 'priminity-pryaz-teammember-feature-detail',
+  selector: 'priminity-pryaz-profile-feature-profile',
   standalone: true,
-  imports: [CommonModule, PryazTeammemberUiDetailComponent],
-  template: ` <priminity-pryaz-teammember-ui-detail
+  imports: [CommonModule, PryazProfileUiProfileComponent],
+  template: ` <priminity-pryaz-profile-ui-profile
     [specificTeamMember]="specificTeamMember$ | async"
     [teamMemberId]="teamMemberId"
   />`,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PryazTeammemberFeatureDetailComponent implements OnDestroy {
+export class PryazProfileFeatureProfileComponent implements OnDestroy {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
 
   teamMember = new TeamMember();

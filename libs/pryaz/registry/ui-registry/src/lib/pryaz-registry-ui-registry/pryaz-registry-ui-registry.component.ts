@@ -181,12 +181,16 @@ export class PryazRegistryUiRegistryComponent {
   registrySuccessful = false;
 
   newTeamMember: TeamMemberInterface = {
+    //! ÄNDERN
     userName: '',
     name: '',
     email: '',
+    phone: null,
     password: '',
     position: '',
+    avatar: '',
     colorScheme: '',
+    birth: null,
     active: true,
     steamLink: '',
     twitchLink: '',

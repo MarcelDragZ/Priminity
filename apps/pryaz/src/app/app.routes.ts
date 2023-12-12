@@ -1,7 +1,10 @@
 import { Route } from '@angular/router';
 import { AdminLoggedInAuthGuard } from '@priminity/shared/auth-guards/admin-logged-in-auth-guard';
 import { LoggedInAuthGuard } from '@priminity/shared/auth-guards/logged-in-auth-guard';
-import { TeamMemberRedirectHomeResolver } from '@priminity/shared/resolvers/active-teammember-resolver';
+import {
+  ActiveRouteIdResolver,
+  TeamMemberRedirectHomeResolver,
+} from '@priminity/shared/resolvers/active-teammember-resolver';
 
 export const appRoutes: Route[] = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -35,6 +38,16 @@ export const appRoutes: Route[] = [
       import('@priminity/pryaz/home/feature-home').then(
         (m) => m.PryazHomeFeatureHomeComponent
       ),
+  },
+  {
+    path: 'profile/:id',
+    loadComponent: () =>
+      import('@priminity/pryaz/profile/feature-profile').then(
+        (m) => m.PryazProfileFeatureProfileComponent
+      ),
+    resolve: {
+      activeRouteId: ActiveRouteIdResolver,
+    },
   },
   {
     path: 'teammember',
