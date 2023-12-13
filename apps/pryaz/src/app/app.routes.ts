@@ -56,5 +56,22 @@ export const appRoutes: Route[] = [
         (m) => m.PryazTeammemberRoutes
       ),
   },
+  {
+    path: 'member',
+    loadChildren: () =>
+      import('@priminity/pryaz/member/shell').then((m) => m.PryazMemberRoutes),
+  },
+  {
+    path: 'task',
+    loadChildren: () =>
+      import('@priminity/pryaz/task/shell').then((m) => m.PryazTaskRoutes),
+  },
+  {
+    path: 'meeting',
+    loadChildren: () =>
+      import('@priminity/pryaz/meeting/shell').then(
+        (m) => m.PryazMeetingRoutes
+      ),
+  },
   { path: '**', redirectTo: 'login' },
 ];

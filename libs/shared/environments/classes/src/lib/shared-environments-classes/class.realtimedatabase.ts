@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import {
   Database,
   getDatabase,
@@ -10,13 +10,9 @@ import {
   remove,
   update,
   query,
-  off,
 } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root', // oder in einem spezifischen Modul
-})
 export abstract class RealtimeDatabase<TData> {
   database: Database = inject(Database);
   db: Database = getDatabase();
@@ -25,7 +21,7 @@ export abstract class RealtimeDatabase<TData> {
   getItems$() {
     const databaseRef = ref(this.db, `${this.dataBaseValue}/`);
     // off(databaseRef); // to delete the reference to database
-    return new Observable((subscriber) => {
+    return new Observable<TData>((subscriber) => {
       onValue(
         databaseRef,
         (snapshot) => {
@@ -34,7 +30,7 @@ export abstract class RealtimeDatabase<TData> {
         },
         (error) => {
           subscriber.error(error);
-        }
+        },
       );
     });
   }
@@ -43,7 +39,7 @@ export abstract class RealtimeDatabase<TData> {
     const databaseRef = ref(this.db, `${this.dataBaseValue}/`);
     const limitedQuery = query(databaseRef, limitToFirst(20));
     // off(databaseRef); // to delete the reference to database
-    return new Observable((subscriber) => {
+    return new Observable<TData>((subscriber) => {
       onValue(
         limitedQuery,
         (snapshot) => {
@@ -52,7 +48,7 @@ export abstract class RealtimeDatabase<TData> {
         },
         (error) => {
           subscriber.error(error);
-        }
+        },
       );
     });
   }
@@ -60,7 +56,7 @@ export abstract class RealtimeDatabase<TData> {
   getSpecificItem$(databaseId: string) {
     const databaseRef = ref(this.db, `${this.dataBaseValue}/` + databaseId); // + databaseid to get specific user
     // off(databaseRef); // to delete the reference to database
-    return new Observable((subscriber) => {
+    return new Observable<TData>((subscriber) => {
       onValue(
         databaseRef,
         (snapshot) => {
@@ -69,7 +65,7 @@ export abstract class RealtimeDatabase<TData> {
         },
         (error) => {
           subscriber.error(error);
-        }
+        },
       );
     });
   }
@@ -77,17 +73,8 @@ export abstract class RealtimeDatabase<TData> {
   async setItem(item: TData) {
     await set(
       push(ref(this.db, `${this.dataBaseValue}/`)), //delte push to override the whole array
-      item
+      item,
     );
-  }
-
-  async setItemWithId(item: TData) {
-    const memberRef = push(ref(this.db, `${this.dataBaseValue}/`));
-    await set(memberRef, {
-      //delte push to override the whole array
-      ...item,
-      id: memberRef.key,
-    });
   }
 
   async deleteItem(databaseId: string) {

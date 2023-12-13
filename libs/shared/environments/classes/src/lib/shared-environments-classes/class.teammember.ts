@@ -19,6 +19,7 @@ export interface TeamMemberInterface {
   youtubeLink: string;
   instagramLink: string;
   tiktokLink: string;
+  createdTime: number | null;
 }
 export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
   constructor() {
@@ -97,6 +98,22 @@ export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
         }
       }),
     );
+  }
+
+  getNameById(teamMemberId: string) {
+    if (teamMemberId) {
+      return this.getSpecificItem$(teamMemberId).pipe(
+        map((teamMember: TeamMemberInterface) => {
+          if (teamMember.userName) {
+            return teamMember.userName;
+          } else {
+            return null;
+          }
+        }),
+      );
+    } else {
+      return null;
+    }
   }
 
   setLocalStorage(teamMemberId: string) {

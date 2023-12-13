@@ -1,18 +1,16 @@
-import { RealtimeDatabase } from "./class.realtimedatabase";
+import { RealtimeDatabase } from './class.realtimedatabase';
 
 export interface TaskInterface {
-  createdFrom: string;
-  date: string;
+  title: string;
   description: string;
   status: string;
-  title: string;
+  creatorId: string;
+  createdTime: number | null;
 }
 
 export class Task extends RealtimeDatabase<TaskInterface> {
-
   constructor() {
     super();
     this.dataBaseValue = 'tasks';
   }
-
 }

@@ -1,20 +1,15 @@
-import { RealtimeDatabase } from "./class.realtimedatabase";
+import { RealtimeDatabase } from './class.realtimedatabase';
 
 export interface FaqInterface {
-  creator: {
-    name: string;
-    position: string;
-  },
-  description: string;
-  index: number;
+  creatorId: string;
   title: string;
+  description: string;
+  createdTime: number;
 }
 
 export class Faq extends RealtimeDatabase<FaqInterface> {
-
   constructor() {
     super();
     this.dataBaseValue = 'faqs';
   }
-
 }

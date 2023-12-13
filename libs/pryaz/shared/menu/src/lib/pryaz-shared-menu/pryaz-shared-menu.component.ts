@@ -14,6 +14,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: ` <nav
+    *ngIf="activeTeamMember"
     class="fixed left-0 top-0 bottom-0 flex flex-col overflow-y-auto justify-between w-48 bg-neutral-900 border-r-2 text-userColor border-userColor"
   >
     <div>
@@ -78,7 +79,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
 
       <div class="flex flex-col ml-3 mr-3 mt-5">
         <a
-          [routerLink]="['/new-member']"
+          [routerLink]="['/member/create']"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -127,9 +128,15 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         </div>
       </div>
 
-      <div class="border-b-2 border-neutral-500 border-opacity-20 mt-5"></div>
+      <div
+        *ngIf="activeTeamMember[1].position === 'Admin'"
+        class="border-b-2 border-neutral-500 border-opacity-20 mt-5"
+      ></div>
 
-      <div class="flex flex-col ml-3 mr-3 mt-5">
+      <div
+        *ngIf="activeTeamMember[1].position === 'Admin'"
+        class="flex flex-col ml-3 mr-3 mt-5"
+      >
         <a
           [routerLink]="['/teammember/create']"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"

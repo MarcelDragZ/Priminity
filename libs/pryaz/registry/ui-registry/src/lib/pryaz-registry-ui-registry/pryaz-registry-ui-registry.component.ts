@@ -98,6 +98,25 @@ import {
           <div class="w-5/12">
             <div
               class="text-red-800 text-sm"
+              *ngIf="form.controls['phone']?.invalid && clickedSignupButton"
+            >
+              Telefon required.
+            </div>
+            <input
+              class="border-userColor w-full border-b-2 p-2 rounded bg-transparent text-white placeholder:text-white"
+              type="number"
+              placeholder="Telefon"
+              [(ngModel)]="newTeamMember.phone"
+              name="phone"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="flex justify-between w-8/12 mt-5">
+          <div class="w-full">
+            <div
+              class="text-red-800 text-sm"
               *ngIf="
                 form.controls['enteredRegCode']?.invalid && clickedSignupButton
               "
@@ -114,6 +133,7 @@ import {
             />
           </div>
         </div>
+
         <div class="flex justify-between w-8/12 mt-5">
           <div class="w-full">
             <div
@@ -181,7 +201,6 @@ export class PryazRegistryUiRegistryComponent {
   registrySuccessful = false;
 
   newTeamMember: TeamMemberInterface = {
-    //! ÄNDERN
     userName: '',
     name: '',
     email: '',
@@ -197,6 +216,7 @@ export class PryazRegistryUiRegistryComponent {
     youtubeLink: '',
     instagramLink: '',
     tiktokLink: '',
+    createdTime: null,
   };
 
   async signUp(invalid: boolean | null) {
@@ -204,7 +224,7 @@ export class PryazRegistryUiRegistryComponent {
       this.setInvalidForm();
     } else {
       const validRegCode = await this.regCode.checkValidRegCode(
-        this.enteredRegCode
+        this.enteredRegCode,
       );
       if (validRegCode) {
         this.registrySuccessful = true;
@@ -212,6 +232,7 @@ export class PryazRegistryUiRegistryComponent {
           teamMember: {
             ...this.newTeamMember,
             position: validRegCode[1].position,
+            createdTime: new Date().getTime(),
           },
           regCode: validRegCode[0],
         });

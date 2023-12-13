@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styles: [],
 })
 export class PryazSharedHeadlineComponent {
-  @Input() title!: string;
+  @Input() title!: string | null | undefined;
 }

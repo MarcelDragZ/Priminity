@@ -1,20 +1,15 @@
-import { RealtimeDatabase } from "./class.realtimedatabase";
+import { RealtimeDatabase } from './class.realtimedatabase';
 
 export interface RuleInterface {
-  creator: {
-    name: string;
-    position: string;
-  };
-  description: any;
-  index: number;
+  creatorId: string;
   title: string;
+  description: string;
+  createdTime: number;
 }
 
 export class Rule extends RealtimeDatabase<RuleInterface> {
-
   constructor() {
     super();
     this.dataBaseValue = 'rules';
   }
-
 }
