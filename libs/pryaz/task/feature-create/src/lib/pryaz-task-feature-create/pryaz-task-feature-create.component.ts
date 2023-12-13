@@ -28,7 +28,7 @@ export class PryazTaskFeatureCreateComponent {
   async createTask(newTask: TaskInterface) {
     const teamMember = await this.teamMember.checkValidTeamMember();
     if (teamMember) {
-      this.task.setItem({
+      await this.task.setItem({
         ...newTask,
         creatorId: teamMember[0],
         createdTime: new Date().getTime(),

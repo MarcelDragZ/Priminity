@@ -130,11 +130,11 @@ export class PryazTaskFeatureListComponent {
           }
           if (searchFilter) {
             sorted = sorted.filter(
-              (member) =>
-                member[1].created
+              (task) =>
+                task[1].created
                   .toLowerCase()
                   .includes(searchFilter.toLowerCase()) ||
-                member[1].title
+                task[1].title
                   .toLowerCase()
                   .includes(searchFilter.toLowerCase()),
             );

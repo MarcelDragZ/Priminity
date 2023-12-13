@@ -5,8 +5,8 @@ export interface MeetingInterface {
   description: string;
   status: string;
   creatorId: string;
-  createdTime: number;
-  meetingTime: string;
+  createdTime: number | null;
+  meetingTime: string | number | null;
 }
 
 export class Meeting extends RealtimeDatabase<MeetingInterface> {

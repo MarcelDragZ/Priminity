@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import {
   TaskInterface,
   TeamMember,
@@ -29,7 +30,7 @@ import {
 
     <ng-container *ngFor="let task of taskList; let i = index">
       <tr
-        (click)="editTeamMember(task[0])"
+        (click)="editTask(task[0])"
         class="h-9 border-b-neutral-900 border-b-2 border-opacity-80 cursor-pointer hover:bg-neutral-900 transition-all"
       >
         <td class="pl-5">{{ i + 1 }}</td>
@@ -78,9 +79,9 @@ export class PryazTaskUiListComponent {
   timestamp = new Timestamp();
   teamMember = new TeamMember();
 
-  editTeamMember(teamMemberId: string) {
+  editTask(taskId: string) {
     this.router.navigateByUrl(
-      this.router.createUrlTree(['detail', teamMemberId], {
+      this.router.createUrlTree(['detail', taskId], {
         relativeTo: this.activeRoute.parent,
         queryParamsHandling: 'merge',
         preserveFragment: true,

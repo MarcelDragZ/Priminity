@@ -39,7 +39,7 @@ export abstract class RealtimeDatabase<TData> {
     const databaseRef = ref(this.db, `${this.dataBaseValue}/`);
     const limitedQuery = query(databaseRef, limitToFirst(20));
     // off(databaseRef); // to delete the reference to database
-    return new Observable<TData>((subscriber) => {
+    return new Observable((subscriber) => {
       onValue(
         limitedQuery,
         (snapshot) => {
@@ -71,17 +71,49 @@ export abstract class RealtimeDatabase<TData> {
   }
 
   async setItem(item: TData) {
-    await set(
-      push(ref(this.db, `${this.dataBaseValue}/`)), //delte push to override the whole array
-      item,
-    );
+    await set(push(ref(this.db, `${this.dataBaseValue}/`)), item);
   }
 
   async deleteItem(databaseId: string) {
     await remove(ref(this.db, `${this.dataBaseValue}/` + databaseId));
   }
 
+  async deleteItems() {
+    await remove(ref(this.db, `${this.dataBaseValue}/`));
+  }
+
   async updateItem(databaseId: string, item: Partial<TData>) {
     await update(ref(this.db, `${this.dataBaseValue}/` + databaseId), item);
   }
+
+  /* CONVERT OLD DATABASE FORMAT INTO NEW
+
+  async ngOnInit() {
+    await firstValueFrom(
+      this.task.getItems$().pipe(
+        map(async (tasks) => {
+          await this.task.deleteItems();
+          const transformTasks = tasks as unknown as any[];
+          transformTasks.map(async (task) => {
+            if (task.created === 'DragZ') {
+              await this.task.setItem({
+                ...task,
+                created: null,
+                creatorId: 'kio9gfwk9e',
+              });
+            }
+            if (task.created === 's0uls1ster') {
+              await this.task.setItem({
+                ...task,
+                created: null,
+                creatorId: 'test',
+              });
+            }
+          });
+        }),
+      ),
+    );
+  }
+
+  */
 }

@@ -104,7 +104,7 @@ export class TeamMember extends RealtimeDatabase<TeamMemberInterface> {
     if (teamMemberId) {
       return this.getSpecificItem$(teamMemberId).pipe(
         map((teamMember: TeamMemberInterface) => {
-          if (teamMember.userName) {
+          if (teamMember) {
             return teamMember.userName;
           } else {
             return null;
