@@ -29,19 +29,73 @@ import {
         </div>
 
         <div class="m-5">
-          Möchtest du {{ dialogEvent.title }} {{ dialogEvent.action }} ?
+          Möchtest du {{ dialogEvent.title }}
+          {{
+            dialogEvent.action === 'trial'
+              ? 'zur neuen Trialphase hinzufügen ?'
+              : dialogEvent.action === 'leaved'
+                ? 'aus dem Clan austragen ?'
+                : dialogEvent.action === 'accepted'
+                  ? 'als Member annehmen ?'
+                  : dialogEvent.action === 'extended'
+                    ? 'Trialphase verlängern ?'
+                    : dialogEvent.action === 'rejected'
+                      ? 'als Member ablehnen ?'
+                      : dialogEvent.action === 'banned'
+                        ? 'bannen ?'
+                        : dialogEvent.action === 'unbanned'
+                          ? 'entbannen ?'
+                          : dialogEvent.action === 'delete'
+                            ? 'löschen ?'
+                            : ''
+          }}
         </div>
 
-        <!-- OPTIONAL TEXT FELD DYNAMISCH EINBLENDEN -->
+        <div
+          *ngIf="
+            dialogEvent.action === 'leaved' ||
+            dialogEvent.action === 'extended' ||
+            dialogEvent.action === 'rejected' ||
+            dialogEvent.action === 'banned'
+          "
+          class="flex flex-col justify-start items-center w-full h-2/3 m-5 mt-0"
+        >
+          <div class="w-full">Grund:</div>
+
+          <textarea
+            class="w-2/3 h-2/3 rounded border-userColor border-2 bg-transparent"
+            type="text"
+            name="dialogDescription"
+            [(ngModel)]="dialogDescription"
+          ></textarea>
+        </div>
 
         <div
           class="absolute flex items-center justify-end bottom-0 left-0 right-0 h-14 bg-neutral-900 pr-5"
         >
           <button
-            (click)="dialogAction(true)"
+            (click)="dialogAction(dialogEvent.action)"
             class="p-0.5 bg-userColor rounded mr-2 hover:opacity-80 transition-all"
           >
-            {{ dialogEvent.action }}
+            {{
+              dialogEvent.action === 'trial'
+                ? 'Neue Trialphase'
+                : dialogEvent.action === 'leaved'
+                  ? 'Verlassen'
+                  : dialogEvent.action === 'accepted'
+                    ? 'Akzeptieren'
+                    : dialogEvent.action === 'extended'
+                      ? 'Verlänger'
+                      : dialogEvent.action === 'rejected'
+                        ? 'Ablehnen'
+                        : dialogEvent.action === 'banned'
+                          ? 'Bannen'
+                          : dialogEvent.action === 'unbanned'
+                            ? 'Entbannen'
+                            : dialogEvent.action === 'delete'
+                              ? 'Löschen'
+                              : ''
+            }}
           </button>
           <button
             (click)="dialogAction(false)"
@@ -63,7 +117,7 @@ export class PryazSharedFullscreenDialogComponent {
 
   dialogDescription?: string;
 
-  dialogAction(action: boolean) {
+  dialogAction(action: string | boolean) {
     this.emitDialogEvent.emit({
       action: action,
       description: this.dialogDescription ? this.dialogDescription : '',

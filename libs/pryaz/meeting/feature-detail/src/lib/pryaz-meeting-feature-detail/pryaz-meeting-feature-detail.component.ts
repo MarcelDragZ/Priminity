@@ -35,8 +35,7 @@ import {
           *ngIf="dialog"
           [dialogEvent]="{
             title: MeetingInterface.title,
-            action: 'Löschen',
-            enableTextField: true
+            action: 'delete'
           }"
           (emitDialogEvent)="dialogAction($event)"
         />
@@ -100,7 +99,7 @@ export class PryazMeetingFeatureDetailComponent {
   }
 
   dialogAction(dialogAction: DialogActionInterface) {
-    if (dialogAction.action) {
+    if (dialogAction.action === 'delete') {
       this.meeting.deleteItem(this.meetingId);
       this.router.navigateByUrl(
         this.router.createUrlTree(['list'], {

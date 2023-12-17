@@ -209,7 +209,7 @@ export class PryazRegistryUiRegistryComponent {
     position: '',
     avatar: '',
     colorScheme: '',
-    birth: null,
+    birth: '',
     active: true,
     steamLink: '',
     twitchLink: '',

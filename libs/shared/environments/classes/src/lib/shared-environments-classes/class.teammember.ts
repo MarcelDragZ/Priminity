@@ -12,7 +12,7 @@ export interface TeamMemberInterface {
   position: string;
   avatar: string;
   colorScheme: string;
-  birth: number | null;
+  birth: string | number | null;
   active: boolean;
   steamLink: string;
   twitchLink: string;

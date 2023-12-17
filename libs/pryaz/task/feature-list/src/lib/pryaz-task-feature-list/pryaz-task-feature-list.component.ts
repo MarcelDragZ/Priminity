@@ -129,14 +129,8 @@ export class PryazTaskFeatureListComponent {
             );
           }
           if (searchFilter) {
-            sorted = sorted.filter(
-              (task) =>
-                task[1].created
-                  .toLowerCase()
-                  .includes(searchFilter.toLowerCase()) ||
-                task[1].title
-                  .toLowerCase()
-                  .includes(searchFilter.toLowerCase()),
+            sorted = sorted.filter((task) =>
+              task[1].title.toLowerCase().includes(searchFilter.toLowerCase()),
             );
           }
 

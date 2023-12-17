@@ -40,8 +40,7 @@ import { PryazSharedFullscreenDialogComponent } from '@priminity/pryaz/shared/fu
           *ngIf="dialog"
           [dialogEvent]="{
             title: TaskInterface.title,
-            action: 'Löschen',
-            enableTextField: true
+            action: 'delete'
           }"
           (emitDialogEvent)="dialogAction($event)"
         />
@@ -97,7 +96,7 @@ export class PryazTaskFeatureDetailComponent implements OnDestroy {
   }
 
   dialogAction(dialogAction: DialogActionInterface) {
-    if (dialogAction.action) {
+    if (dialogAction.action === 'delete') {
       this.task.deleteItem(this.taskId);
       this.router.navigateByUrl(
         this.router.createUrlTree(['list'], {
