@@ -1,1 +1,1 @@
-export * from './lib/shared-environments-models/model.teammember';
+export * from './lib/shared-environments-models/model.lol';

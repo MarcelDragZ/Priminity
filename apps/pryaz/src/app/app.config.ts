@@ -3,11 +3,12 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { appRoutes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+
+import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -38,8 +39,8 @@ export const appConfig: ApplicationConfig = {
           authDomain: 'priminity-backup.firebaseapp.com',
           messagingSenderId: '571319678723',
           measurementId: 'G-W0SJPXKGKJ',
-        })
-      )
+        }),
+      ),
     ),
     importProvidersFrom(provideFirestore(() => getFirestore())),
     importProvidersFrom(provideDatabase(() => getDatabase())),

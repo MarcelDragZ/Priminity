@@ -1,17 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~quill/dist/quill.snow.css';
+
+:root {
+  --dynamic-color: 255, 0, 0;
+  --dynamic-img-color: invert(83%) sepia(14%) saturate(5171%) hue-rotate(26deg)
+    brightness(106%) contrast(89%);
+}
+
+* {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+}
+
 body {
   margin: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
 }
 
 ::-webkit-scrollbar {
-  width: 1px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: red;
+  background-color: rgba(var(--dynamic-color));
   border-radius: 6px;
 }
 
@@ -20,7 +44,7 @@ body {
 }
 
 * {
-  scrollbar-color: red #f0f0f0;
+  scrollbar-color: rgba(var(--dynamic-color));
 }
 
 /* RED */
@@ -230,3 +254,34 @@ body {
 }
 
 /* LIGHT-GRAY */
+
+/* QUILL */
+
+.ql-toolbar,
+.ql-container {
+  border: none !important;
+  border-bottom: 1px solid rgb(var(--dynamic-color)) !important;
+  border-radius: 2px;
+}
+
+.ql-picker-label,
+.ql-toolbar,
+.ql-picker-options,
+button.ql-active {
+  color: rgb(var(--dynamic-color)) !important;
+  background-color: rgb(23, 23, 23);
+}
+
+svg {
+  //No overload img-color imports also brightness but black image needed for proper apply
+  filter: brightness(0%) var(--dynamic-img-color);
+  &:hover {
+    filter: none;
+  }
+}
+
+.ql-active svg {
+  filter: none;
+}
+
+/* QUILL */

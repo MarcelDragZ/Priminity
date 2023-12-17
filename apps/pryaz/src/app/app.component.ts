@@ -1,77 +1,90 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
+import { map } from 'rxjs';
 
-// import { Firestore, getFirestore } from '@angular/fire/firestore';
-// import { Database, getDatabase, onValue, push, ref, set, limitToFirst, remove, update, query, off } from '@angular/fire/database'; // replace database with firestore and getdatabase with getfirestore
+import { PryazSharedMenuComponent } from '@priminity/pryaz/shared/menu';
+import {
+  ImageFilter,
+  Solver,
+  TeamMember,
+} from '@priminity/shared/environments/classes';
+
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule, PryazSharedMenuComponent],
   selector: 'priminity-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'pryaz';
-  // database: Database = inject(Database);
-  // db = getDatabase();
+  public router: Router = inject(Router);
 
-  // constructor() {
-  //   this.getRealtimeDatabaseItems();
-  // }
+  teamMember = new TeamMember();
 
-  // getRealtimeDatabaseItems() {
-  //   const memberRef = ref(this.db, 'members/'); // + databaseid to get specific user
-  //   const limitedQuery = query(memberRef, limitToFirst(20)); // Limit to the first 10 items
-  //   off(memberRef); // unsubscribe to previous one
-  //   onValue(limitedQuery, (snapshot) => {
-  //     const data = snapshot.val();
-  //     /*
-  //           console.log(Object.keys(data).map(key => {
-  //             return ({ id: key, ...data[key] });
-  //           })); */
+  rgbColor: { r: number; g: number; b: number } = {
+    r: 255,
+    g: 0,
+    b: 0,
+  };
 
-  //     console.log(data);
-  //   });
+  constructor() {
+    document.documentElement.style.setProperty(
+      '--dynamic-color',
+      `${this.rgbColor.r}, ${this.rgbColor.g}, ${this.rgbColor.b}`,
+    );
+    this.imageColor(this.rgbColor.r, this.rgbColor.g, this.rgbColor.b);
+  }
 
-  // }
+  activeTeamMember$ = this.teamMember.syncValidTeamMember().pipe(
+    map((teamMember) => {
+      this.getRgbColor(teamMember ? teamMember[1].colorScheme : '');
+      document.documentElement.style.setProperty(
+        '--dynamic-color',
+        `${this.rgbColor.r}, ${this.rgbColor.g}, ${this.rgbColor.b}`,
+      );
+      this.imageColor(this.rgbColor.r, this.rgbColor.g, this.rgbColor.b);
+      return teamMember;
+    }),
+  );
 
-  // setRealtimeDatabaseItems() {
-  //   set(push(ref(this.db, 'members/')), {  //delte push to override the whole array
-  //     test: 'lol2',
-  //     test2: 123,
-  //   });
-  // }
+  getRgbColor(hexColor: string) {
+    if (hexColor === '') {
+      return;
+    } else {
+      this.rgbColor.r = parseInt(hexColor.substr(1, 2), 16);
+      this.rgbColor.g = parseInt(hexColor.substr(3, 2), 16);
+      this.rgbColor.b = parseInt(hexColor.substr(5, 2), 16);
+    }
+  }
 
-  // setRealtimeDatabaseItemsWithId() {
-  //   const memberRef = push(ref(this.db, 'members/'));
-  //   set((memberRef), { //delte push to override the whole array
-  //     id: memberRef.key,
-  //     test: 'lol2',
-  //     test2: 123,
-  //   });
-  // }
+  imageColor(r: number, g: number, b: number) {
+    const targetColor = new ImageFilter(r, g, b); // Ziel Farbe in RGB
 
-  // deleteRealtimeDatabaseItems() {
-  //   remove(ref(this.db, 'members/' + '-Nht8GGlHgF0nnfCnJG9'));
-  // }
+    const solver = new Solver(targetColor);
+    const solution = solver.solve();
+    const cssFilter = solution.filter;
 
-  // updateRealtimeDatabaseItems() {
-  //   update(ref(this.db, 'members/' + '-Nht8GGlHgF0nnfCnJG9'), { // only updates the values that you want to change..
-  //     age: '26',
-  //   });
-  // }
+    if (solution.loss < 10) {
+      const style = document.createElement('style');
+      style.type = 'text/css';
 
-  // updateRealtimeDatabaseItems2() {
-  //   set((ref(this.db, 'members/' + '-Nht8GGlHgF0nnfCnJG9')), // merges to an existing object and can override properties
-  //     {
-  //       ...{
-  //         test: 'lol2',
-  //         test2: 123,
-  //       },
-  //       ... {
-  //         test3: 123,
-  //       }
-  //     }
-  //   );
-  // }
+      this.setDynamicCssVariabel(cssFilter)
+
+      style.innerHTML = `.img-color { ${cssFilter} }`; //! works by creating child component classes
+      document.head.appendChild(style);
+    } else {
+      this.imageColor(r, g, b);
+      return;
+    }
+  }
+
+  setDynamicCssVariabel(cssFilter: string) {
+    const cleanedCss = cssFilter.replace("filter: ", "").replace(/;$/, "");
+    document.documentElement.style.setProperty(
+      '--dynamic-img-color',
+      `${cleanedCss}`,
+    );
+  }
 }

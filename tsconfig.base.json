@@ -60,17 +60,82 @@
       "@priminity/priminity/teams/feature-teams": [
         "libs/priminity/teams/feature-teams/src/index.ts"
       ],
+      "@priminity/pryaz/changelog/feature-changelog": [
+        "libs/pryaz/changelog/feature-changelog/src/index.ts"
+      ],
+      "@priminity/pryaz/changelog/ui-changelog": [
+        "libs/pryaz/changelog/ui-changelog/src/index.ts"
+      ],
       "@priminity/pryaz/forgot-password/feature-forgot-password": [
         "libs/pryaz/forgot-password/feature-forgot-password/src/index.ts"
       ],
       "@priminity/pryaz/forgot-password/ui-forgot-password": [
         "libs/pryaz/forgot-password/ui-forgot-password/src/index.ts"
       ],
+      "@priminity/pryaz/home/feature-home": [
+        "libs/pryaz/home/feature-home/src/index.ts"
+      ],
+      "@priminity/pryaz/home/ui-home": ["libs/pryaz/home/ui-home/src/index.ts"],
       "@priminity/pryaz/login/feature-login": [
         "libs/pryaz/login/feature-login/src/index.ts"
       ],
       "@priminity/pryaz/login/ui-login": [
         "libs/pryaz/login/ui-login/src/index.ts"
+      ],
+      "@priminity/pryaz/meeting/feature-create": [
+        "libs/pryaz/meeting/feature-create/src/index.ts"
+      ],
+      "@priminity/pryaz/meeting/feature-detail": [
+        "libs/pryaz/meeting/feature-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/meeting/feature-list": [
+        "libs/pryaz/meeting/feature-list/src/index.ts"
+      ],
+      "@priminity/pryaz/meeting/shell": [
+        "libs/pryaz/meeting/shell/src/index.ts"
+      ],
+      "@priminity/pryaz/meeting/ui-create": [
+        "libs/pryaz/meeting/ui-create/src/index.ts"
+      ],
+      "@priminity/pryaz/meeting/ui-detail": [
+        "libs/pryaz/meeting/ui-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/meeting/ui-list": [
+        "libs/pryaz/meeting/ui-list/src/index.ts"
+      ],
+      "@priminity/pryaz/member/feature-create": [
+        "libs/pryaz/member/feature-create/src/index.ts"
+      ],
+      "@priminity/pryaz/member/feature-detail": [
+        "libs/pryaz/member/feature-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/member/feature-list": [
+        "libs/pryaz/member/feature-list/src/index.ts"
+      ],
+      "@priminity/pryaz/member/shell": ["libs/pryaz/member/shell/src/index.ts"],
+      "@priminity/pryaz/member/ui-conversation-guide": [
+        "libs/pryaz/member/ui-conversation-guide/src/index.ts"
+      ],
+      "@priminity/pryaz/member/ui-create": [
+        "libs/pryaz/member/ui-create/src/index.ts"
+      ],
+      "@priminity/pryaz/member/ui-detail": [
+        "libs/pryaz/member/ui-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/member/ui-list": [
+        "libs/pryaz/member/ui-list/src/index.ts"
+      ],
+      "@priminity/pryaz/organisation/feature-organisation": [
+        "libs/pryaz/organisation/feature-organisation/src/index.ts"
+      ],
+      "@priminity/pryaz/organisation/ui-organisation": [
+        "libs/pryaz/organisation/ui-organisation/src/index.ts"
+      ],
+      "@priminity/pryaz/profile/feature-profile": [
+        "libs/pryaz/profile/feature-profile/src/index.ts"
+      ],
+      "@priminity/pryaz/profile/ui-profile": [
+        "libs/pryaz/profile/ui-profile/src/index.ts"
       ],
       "@priminity/pryaz/registry/feature-registry": [
         "libs/pryaz/registry/feature-registry/src/index.ts"
@@ -78,11 +143,72 @@
       "@priminity/pryaz/registry/ui-registry": [
         "libs/pryaz/registry/ui-registry/src/index.ts"
       ],
+      "@priminity/pryaz/shared/fullscreen-dialog": [
+        "libs/pryaz/shared/fullscreen-dialog/src/index.ts"
+      ],
+      "@priminity/pryaz/shared/headline": [
+        "libs/pryaz/shared/headline/src/index.ts"
+      ],
+      "@priminity/pryaz/shared/logo": ["libs/pryaz/shared/logo/src/index.ts"],
+      "@priminity/pryaz/shared/menu": ["libs/pryaz/shared/menu/src/index.ts"],
+      "@priminity/pryaz/shared/quill-text": [
+        "libs/pryaz/shared/quill-text/src/index.ts"
+      ],
+      "@priminity/pryaz/shared/welcome": [
+        "libs/pryaz/shared/welcome/src/index.ts"
+      ],
+      "@priminity/pryaz/task/feature-create": [
+        "libs/pryaz/task/feature-create/src/index.ts"
+      ],
+      "@priminity/pryaz/task/feature-detail": [
+        "libs/pryaz/task/feature-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/task/feature-list": [
+        "libs/pryaz/task/feature-list/src/index.ts"
+      ],
+      "@priminity/pryaz/task/shell": ["libs/pryaz/task/shell/src/index.ts"],
+      "@priminity/pryaz/task/ui-create": [
+        "libs/pryaz/task/ui-create/src/index.ts"
+      ],
+      "@priminity/pryaz/task/ui-detail": [
+        "libs/pryaz/task/ui-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/task/ui-list": ["libs/pryaz/task/ui-list/src/index.ts"],
+      "@priminity/pryaz/teammember/feature-create": [
+        "libs/pryaz/teammember/feature-create/src/index.ts"
+      ],
+      "@priminity/pryaz/teammember/feature-detail": [
+        "libs/pryaz/teammember/feature-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/teammember/feature-list": [
+        "libs/pryaz/teammember/feature-list/src/index.ts"
+      ],
+      "@priminity/pryaz/teammember/shell": [
+        "libs/pryaz/teammember/shell/src/index.ts"
+      ],
+      "@priminity/pryaz/teammember/ui-create": [
+        "libs/pryaz/teammember/ui-create/src/index.ts"
+      ],
+      "@priminity/pryaz/teammember/ui-detail": [
+        "libs/pryaz/teammember/ui-detail/src/index.ts"
+      ],
+      "@priminity/pryaz/teammember/ui-list": [
+        "libs/pryaz/teammember/ui-list/src/index.ts"
+      ],
+      "@priminity/shared/auth-guards/admin-logged-in-auth-guard": [
+        "libs/shared/auth-guards/admin-logged-in-auth-guard/src/index.ts"
+      ],
+      "@priminity/shared/auth-guards/logged-in-auth-guard": [
+        "libs/shared/auth-guards/logged-in-auth-guard/src/index.ts"
+      ],
       "@priminity/shared/environments/classes": [
         "libs/shared/environments/classes/src/index.ts"
       ],
       "@priminity/shared/environments/models": [
         "libs/shared/environments/models/src/index.ts"
+      ],
+      "@priminity/shared/resolvers/active-teammember-resolver": [
+        "libs/shared/resolvers/active-teammember-resolver/src/index.ts"
       ]
     }
   },

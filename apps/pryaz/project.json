@@ -24,7 +24,8 @@
           "apps/pryaz/src/assets"
         ],
         "styles": [
-          "apps/pryaz/src/styles.scss"
+          "apps/pryaz/src/styles.scss",
+          "node_modules/quill/dist/quill.snow.css"
         ],
         "scripts": []
       },

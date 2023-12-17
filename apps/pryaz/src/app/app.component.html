@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<priminity-pryaz-shared-menu [activeTeamMember]="activeTeamMember$ | async"
+  *ngIf="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password'" />
+
+<div [class.ml-48]="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password'">
+  <router-outlet />
+</div>
