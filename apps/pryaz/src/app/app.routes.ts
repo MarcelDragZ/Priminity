@@ -12,7 +12,7 @@ export const appRoutes: Route[] = [
     path: 'login',
     loadComponent: () =>
       import('@priminity/pryaz/login/feature-login').then(
-        (m) => m.PryazLoginFeatureLoginComponent
+        (m) => m.PryazLoginFeatureLoginComponent,
       ),
     resolve: {
       redirectHome: TeamMemberRedirectHomeResolver,
@@ -22,56 +22,62 @@ export const appRoutes: Route[] = [
     path: 'registry',
     loadComponent: () =>
       import('@priminity/pryaz/registry/feature-registry').then(
-        (m) => m.PryazRegistryFeatureRegistryComponent
+        (m) => m.PryazRegistryFeatureRegistryComponent,
       ),
   },
   {
     path: 'forgot-password',
     loadComponent: () =>
       import('@priminity/pryaz/forgot-password/feature-forgot-password').then(
-        (m) => m.PryazForgotPasswordFeatureForgotPasswordComponent
+        (m) => m.PryazForgotPasswordFeatureForgotPasswordComponent,
       ),
   },
   {
     path: 'home',
     loadComponent: () =>
       import('@priminity/pryaz/home/feature-home').then(
-        (m) => m.PryazHomeFeatureHomeComponent
+        (m) => m.PryazHomeFeatureHomeComponent,
       ),
+    canActivate: [LoggedInAuthGuard],
   },
   {
     path: 'profile/:id',
     loadComponent: () =>
       import('@priminity/pryaz/profile/feature-profile').then(
-        (m) => m.PryazProfileFeatureProfileComponent
+        (m) => m.PryazProfileFeatureProfileComponent,
       ),
     resolve: {
       activeRouteId: ActiveRouteIdResolver,
     },
+    canActivate: [LoggedInAuthGuard],
   },
   {
     path: 'teammember',
     loadChildren: () =>
       import('@priminity/pryaz/teammember/shell').then(
-        (m) => m.PryazTeammemberRoutes
+        (m) => m.PryazTeammemberRoutes,
       ),
+    canActivate: [LoggedInAuthGuard, AdminLoggedInAuthGuard],
   },
   {
     path: 'member',
     loadChildren: () =>
       import('@priminity/pryaz/member/shell').then((m) => m.PryazMemberRoutes),
+    canActivate: [LoggedInAuthGuard],
   },
   {
     path: 'task',
     loadChildren: () =>
       import('@priminity/pryaz/task/shell').then((m) => m.PryazTaskRoutes),
+    canActivate: [LoggedInAuthGuard],
   },
   {
     path: 'meeting',
     loadChildren: () =>
       import('@priminity/pryaz/meeting/shell').then(
-        (m) => m.PryazMeetingRoutes
+        (m) => m.PryazMeetingRoutes,
       ),
+    canActivate: [LoggedInAuthGuard],
   },
   { path: '**', redirectTo: 'login' },
 ];

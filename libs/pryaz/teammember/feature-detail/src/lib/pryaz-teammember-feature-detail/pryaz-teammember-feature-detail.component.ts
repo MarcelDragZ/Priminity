@@ -10,6 +10,8 @@ import { Observable, map } from 'rxjs';
 
 import { PryazTeammemberUiDetailComponent } from '@priminity/pryaz/teammember/ui-detail';
 import {
+  Member,
+  MemberInterface,
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
@@ -20,6 +22,7 @@ import {
   imports: [CommonModule, PryazTeammemberUiDetailComponent],
   template: ` <priminity-pryaz-teammember-ui-detail
     [specificTeamMember]="specificTeamMember$ | async"
+    [memberList]="memberList$ | async"
     [teamMemberId]="teamMemberId"
   />`,
   styles: [],
@@ -29,20 +32,29 @@ export class PryazTeammemberFeatureDetailComponent implements OnDestroy {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
 
   teamMember = new TeamMember();
+  member = new Member();
 
   teamMemberId!: string;
   activeRouteSubscription = this.activeRoute.data
     .pipe(
       map((data) => {
         return data['activeRouteId'];
-      })
+      }),
     )
     .subscribe((data) => (this.teamMemberId = data));
 
   specificTeamMember$: Observable<TeamMemberInterface> =
     this.teamMember.getSpecificItem$(
-      this.teamMemberId
+      this.teamMemberId,
     ) as Observable<TeamMemberInterface>;
+
+  memberList$: Observable<[string, MemberInterface][]> = this.member
+    .getItems$()
+    .pipe(
+      map((members) => {
+        return Object.entries(members ?? {});
+      }),
+    );
 
   ngOnDestroy(): void {
     if (this.activeRouteSubscription) {

@@ -5,7 +5,10 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TeamMemberInterface } from '@priminity/shared/environments/classes';
+import {
+  MemberInterface,
+  TeamMemberInterface,
+} from '@priminity/shared/environments/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -42,7 +45,7 @@ import { ActivatedRoute, Router } from '@angular/router';
             >{{ teamMember[1].active ? 'Aktiviert' : 'Deaktiviert' }}</span
           >
         </td>
-        <td class="w-36 pr-5">233</td>
+        <td class="w-36 pr-5">{{ getCreatedMemberCount(teamMember[0]) }}</td>
       </tr>
     </ng-container>
   </table>`,
@@ -54,6 +57,19 @@ export class PryazTeammemberUiListComponent {
   activeRoute: ActivatedRoute = inject(ActivatedRoute);
 
   @Input() teamMemberList!: [string, TeamMemberInterface][] | null;
+  @Input() memberList!: [string, MemberInterface][] | null;
+
+  getCreatedMemberCount(teamMemberId: string) {
+    let createdMembersCount = 0;
+    if (this.memberList) {
+      this.memberList!.forEach((member) => {
+        if (member[1].creatorId === teamMemberId) {
+          createdMembersCount++;
+        }
+      });
+    }
+    return createdMembersCount;
+  }
 
   editTeamMember(teamMemberId: string) {
     this.router.navigateByUrl(
@@ -61,7 +77,7 @@ export class PryazTeammemberUiListComponent {
         relativeTo: this.activeRoute.parent,
         queryParamsHandling: 'merge',
         preserveFragment: true,
-      })
+      }),
     );
   }
 }

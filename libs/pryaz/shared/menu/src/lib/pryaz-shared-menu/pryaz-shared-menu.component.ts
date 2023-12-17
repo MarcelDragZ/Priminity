@@ -86,7 +86,15 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
             src="/assets/img/add_user.png"
           />Neuer Member</a
         >
-        <div
+        <a
+          [routerLink]="['/member']"
+          class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
+          ><img
+            class="w-6 object-contain mr-2 img-color"
+            src="/assets/img/user.png"
+          />Memberliste</a
+        >
+        <!-- <div
           (click)="toggleAdvancedMenu()"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all  p-1 rounded"
         >
@@ -98,9 +106,9 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
             Ansichten
             <span class="text-xs">{{ advancedMenuIcon }}</span>
           </span>
-        </div>
+        </div> -->
         <!-- Advanced Menu on Toggle -->
-        <div [class.fade_in]="advancedMenu" class="h-full" *ngIf="advancedMenu">
+        <!-- <div [class.fade_in]="advancedMenu" class="h-full" *ngIf="advancedMenu">
           <a
             [routerLink]="['/member']"
             class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
@@ -109,23 +117,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
               src="/assets/img/user.png"
             />Memberliste</a
           >
-          <!-- <a
-            [routerLink]="['/home']"
-            class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
-            ><img
-              class="w-6 object-contain mr-2 img-color"
-              src="/assets/img/user.png"
-            />Trialliste</a
-          >
-          <a
-            [routerLink]="['/home']"
-            class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
-            ><img
-              class="w-6 object-contain mr-2 img-color"
-              src="/assets/img/user.png"
-            />Verifiziertenliste</a
-          > -->
-        </div>
+        </div> -->
       </div>
 
       <div
@@ -213,15 +205,15 @@ export class PryazSharedMenuComponent {
   advancedMenuIcon = '▶';
   advancedMenu = false;
 
-  toggleAdvancedMenu() {
-    if (this.advancedMenu) {
-      this.advancedMenuIcon = '▶';
-      this.advancedMenu = false;
-    } else {
-      this.advancedMenuIcon = '▼';
-      this.advancedMenu = true;
-    }
-  }
+  // toggleAdvancedMenu() {
+  //   if (this.advancedMenu) {
+  //     this.advancedMenuIcon = '▶';
+  //     this.advancedMenu = false;
+  //   } else {
+  //     this.advancedMenuIcon = '▼';
+  //     this.advancedMenu = true;
+  //   }
+  // }
 
   logout() {
     localStorage.clear();

@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  MemberInterface,
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
@@ -247,15 +253,16 @@ import { ColorPickerModule } from 'ngx-color-picker';
         <span class="text-userColor font-bold mb-5">Allgemein</span>
 
         <span>Erstellte Member:</span>
-        <span class="mb-4">223</span>
+        <span class="mb-4">{{ createdMembersCount }}</span>
       </div>
     </div>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PryazProfileUiProfileComponent {
+export class PryazProfileUiProfileComponent implements OnChanges {
   @Input() teamMemberId!: string;
+  @Input() memberList!: [string, MemberInterface][] | null;
   @Input() set specificTeamMember(value: TeamMemberInterface | null) {
     this._specificTeamMember = value;
     if (value && !this.editProfile) {
@@ -285,6 +292,17 @@ export class PryazProfileUiProfileComponent {
   editTeamMember: Partial<TeamMemberInterface> = {};
   editProfile = false;
   colorScheme = '';
+  createdMembersCount = 0;
+
+  ngOnChanges(): void {
+    if (this.memberList) {
+      this.memberList!.forEach((member) => {
+        if (member[1].creatorId === this.teamMemberId) {
+          this.createdMembersCount++;
+        }
+      });
+    }
+  }
 
   toggleEditProfile(toggle: boolean) {
     this.editProfile = toggle;

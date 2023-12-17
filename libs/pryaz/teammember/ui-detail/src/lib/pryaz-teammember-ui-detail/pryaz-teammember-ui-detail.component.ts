@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import {
+  MemberInterface,
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
@@ -291,15 +297,16 @@ import {
         <span class="text-userColor font-bold mb-5">Allgemein</span>
 
         <span>Erstellte Member:</span>
-        <span class="mb-4">223</span>
+        <span class="mb-4">{{ createdMembersCount }}</span>
       </div>
     </div>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PryazTeammemberUiDetailComponent {
+export class PryazTeammemberUiDetailComponent implements OnChanges {
   @Input() teamMemberId!: string;
+  @Input() memberList!: [string, MemberInterface][] | null;
   @Input() set specificTeamMember(value: TeamMemberInterface | null) {
     this._specificTeamMember = value;
     if (value && !this.editProfile) {
@@ -328,6 +335,17 @@ export class PryazTeammemberUiDetailComponent {
   _specificTeamMember!: TeamMemberInterface | null;
   editTeamMember: Partial<TeamMemberInterface> = {};
   editProfile = false;
+  createdMembersCount = 0;
+
+  ngOnChanges(): void {
+    if (this.memberList) {
+      this.memberList!.forEach((member) => {
+        if (member[1].creatorId === this.teamMemberId) {
+          this.createdMembersCount++;
+        }
+      });
+    }
+  }
 
   toggleEditProfile(toggle: boolean) {
     this.editProfile = toggle;

@@ -15,4 +15,43 @@ export class Timestamp {
   getTimestampFromDate(date: string | number | null) {
     return new Date(date as string).getTime();
   }
+
+  getWednesdayInTwoWeeks() {
+    const today = new Date();
+    const daysUntilNextWednesday = (3 - today.getDay() + 7) % 7;
+
+    const wednesdayInTwoWeeks = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + daysUntilNextWednesday + 14,
+    );
+
+    return wednesdayInTwoWeeks.getTime();
+  }
+
+  getWednesdayInOneWeek() {
+    const today = new Date();
+    const daysUntilNextWednesday = (3 - today.getDay() + 7) % 7;
+
+    const wednesdayInTwoWeeks = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + daysUntilNextWednesday + 7,
+    );
+
+    return wednesdayInTwoWeeks.getTime();
+  }
+
+  getNextWednesday() {
+    const today = new Date();
+    const daysUntilNextWednesday = (3 - today.getDay() + 7) % 7;
+
+    const wednesdayInTwoWeeks = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + daysUntilNextWednesday,
+    );
+
+    return wednesdayInTwoWeeks.getTime();
+  }
 }

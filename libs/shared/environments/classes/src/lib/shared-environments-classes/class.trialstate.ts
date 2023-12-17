@@ -1,11 +1,9 @@
 import { RealtimeDatabase } from './class.realtimedatabase';
 
 export interface TrialStateInterface {
-  creatorId: string;
   type: string;
-  typeChangeTime: number;
-  trialEndTime: number;
-  time: number;
+  typeChangeTime: number | null;
+  trialEndTime: number | null;
   trialPhases: number;
   trialPhasesExtended: number;
   reason?: string;

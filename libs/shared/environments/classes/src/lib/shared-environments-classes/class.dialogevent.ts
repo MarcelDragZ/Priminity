@@ -1,11 +1,10 @@
 export interface DialogEventInterface {
   title: string;
   action: string;
-  enableTextField: boolean;
 }
 
 export interface DialogActionInterface {
-  action: boolean;
+  action: string | boolean;
   description: string;
 }
 

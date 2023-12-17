@@ -10,6 +10,8 @@ import {
 
 import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
 import {
+  Member,
+  MemberInterface,
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
@@ -79,25 +81,27 @@ import { FormsModule } from '@angular/forms';
 
     <priminity-pryaz-teammember-ui-list
       [teamMemberList]="teamMemberList$ | async"
+      [memberList]="memberList$ | async"
     /> `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PryazTeammemberFeatureListComponent {
   teamMember = new TeamMember();
+  member = new Member();
 
   searchFilter = '';
 
   listFilter$ = new BehaviorSubject<string>('all');
   searchFilter$ = new BehaviorSubject<string>('');
 
-  changeListFilter(filter: string) {
-    this.listFilter$.next(filter);
-  }
-
-  changeSearchFilter() {
-    this.searchFilter$.next(this.searchFilter);
-  }
+  memberList$: Observable<[string, MemberInterface][]> = this.member
+    .getItems$()
+    .pipe(
+      map((members) => {
+        return Object.entries(members ?? {});
+      }),
+    );
 
   teamMemberList$: Observable<[string, TeamMemberInterface][]> = combineLatest([
     this.listFilter$,
@@ -108,8 +112,9 @@ export class PryazTeammemberFeatureListComponent {
         map((teamMembers) => {
           let sorted = Object.entries(teamMembers ?? {}).sort((a, b) => {
             return (
+              b[1].active - a[1].active ||
               this.getPositionRank(a[1].position) -
-              this.getPositionRank(b[1].position)
+                this.getPositionRank(b[1].position)
             );
           });
           if (filter !== 'all') {
@@ -117,8 +122,8 @@ export class PryazTeammemberFeatureListComponent {
               filter === 'activated'
                 ? member[1].active
                 : filter === 'deactivated'
-                ? !member[1].active
-                : true
+                  ? !member[1].active
+                  : true,
             );
           }
           if (searchFilter) {
@@ -138,14 +143,14 @@ export class PryazTeammemberFeatureListComponent {
                   .includes(searchFilter.toLowerCase()) ||
                 member[1].steamLink
                   .toLowerCase()
-                  .includes(searchFilter.toLowerCase())
+                  .includes(searchFilter.toLowerCase()),
             );
           }
 
           return sorted;
-        })
-      )
-    )
+        }),
+      ),
+    ),
   );
 
   getPositionRank(position: string): number {
@@ -163,5 +168,13 @@ export class PryazTeammemberFeatureListComponent {
       default:
         return 6;
     }
+  }
+
+  changeListFilter(filter: string) {
+    this.listFilter$.next(filter);
+  }
+
+  changeSearchFilter() {
+    this.searchFilter$.next(this.searchFilter);
   }
 }

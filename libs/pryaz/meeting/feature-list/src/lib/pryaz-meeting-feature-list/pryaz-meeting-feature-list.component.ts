@@ -133,14 +133,10 @@ export class PryazMeetingFeatureListComponent {
             );
           }
           if (searchFilter) {
-            sorted = sorted.filter(
-              (meeting) =>
-                meeting[1].created
-                  .toLowerCase()
-                  .includes(searchFilter.toLowerCase()) ||
-                meeting[1].title
-                  .toLowerCase()
-                  .includes(searchFilter.toLowerCase()),
+            sorted = sorted.filter((meeting) =>
+              meeting[1].title
+                .toLowerCase()
+                .includes(searchFilter.toLowerCase()),
             );
           }
 
