@@ -1,4 +1,10 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { map } from 'rxjs';
@@ -17,11 +23,15 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'pryaz';
   public router: Router = inject(Router);
+  cdRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   teamMember = new TeamMember();
+
+  toggledMenu = true;
+  screenWidth = true;
 
   rgbColor: { r: number; g: number; b: number } = {
     r: 255,
@@ -35,6 +45,15 @@ export class AppComponent {
       `${this.rgbColor.r}, ${this.rgbColor.g}, ${this.rgbColor.b}`,
     );
     this.imageColor(this.rgbColor.r, this.rgbColor.g, this.rgbColor.b);
+  }
+
+  ngOnInit(): void {
+    this.checkScreenSize();
+    window.addEventListener('resize', this.checkScreenSize.bind(this));
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.checkScreenSize.bind(this));
   }
 
   activeTeamMember$ = this.teamMember.syncValidTeamMember().pipe(
@@ -70,7 +89,7 @@ export class AppComponent {
       const style = document.createElement('style');
       style.type = 'text/css';
 
-      this.setDynamicCssVariabel(cssFilter)
+      this.setDynamicCssVariabel(cssFilter);
 
       style.innerHTML = `.img-color { ${cssFilter} }`; //! works by creating child component classes
       document.head.appendChild(style);
@@ -81,10 +100,24 @@ export class AppComponent {
   }
 
   setDynamicCssVariabel(cssFilter: string) {
-    const cleanedCss = cssFilter.replace("filter: ", "").replace(/;$/, "");
+    const cleanedCss = cssFilter.replace('filter: ', '').replace(/;$/, '');
     document.documentElement.style.setProperty(
       '--dynamic-img-color',
       `${cleanedCss}`,
     );
+  }
+
+  toggleMenu() {
+    if (this.toggledMenu) {
+      this.toggledMenu = false;
+    } else {
+      this.toggledMenu = true;
+    }
+  }
+
+  private checkScreenSize() {
+    this.toggledMenu = window.innerWidth > 768;
+    this.screenWidth = window.innerWidth > 768;
+    this.cdRef.detectChanges();
   }
 }

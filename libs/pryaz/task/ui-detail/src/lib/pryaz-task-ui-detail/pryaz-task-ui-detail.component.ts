@@ -120,7 +120,7 @@ import { PryazSharedQuillTextComponent } from '@priminity/pryaz/shared/quill-tex
         class="bg-userColor ml-2 p-1 text-white rounded hover:opacity-80 transition-all"
         (click)="dialogDelete()"
       >
-        Aufgabe Löschen
+        Löschen
       </button>
     </div>
 

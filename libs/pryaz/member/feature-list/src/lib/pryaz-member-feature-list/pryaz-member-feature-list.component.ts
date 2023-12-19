@@ -34,8 +34,12 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
     >
       Member erstellen
     </a>
-    <div class="flex items-center justify-between">
-      <div class="flex text-white m-5 cursor-pointer">
+    <div
+      class="flex flex-col sm:flex-row items-start sm:items-center justify-between"
+    >
+      <div
+        class="flex w-full sm:w-auto text-sm sm:text-base text-white sm:pr-0 pr-5 sm:pl-0 pl-5 mt-5 sm:m-5 cursor-pointer"
+      >
         <div
           (click)="changeListFilter('all')"
           [ngClass]="

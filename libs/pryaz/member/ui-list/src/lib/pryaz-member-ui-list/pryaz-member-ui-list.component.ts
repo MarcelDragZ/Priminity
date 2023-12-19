@@ -23,10 +23,10 @@ import {
     >
       <td class="pl-5">Nr.</td>
       <td>Member</td>
-      <td>Erstellt von</td>
-      <td>Verifiziert seit</td>
+      <td class="hidden sm:table-cell">Erstellt von</td>
+      <td class="hidden sm:table-cell">Verifiziert seit</td>
       <td *ngIf="listFilter === 'trial'">Trial Ende</td>
-      <td>Steam</td>
+      <td class="hidden xl:table-cell">Steam</td>
       <td>Status</td>
     </tr>
 
@@ -37,14 +37,18 @@ import {
       >
         <td class="pl-5">{{ i + 1 }}</td>
         <td>{{ member[1].userName }} | {{ member[1].name }}</td>
-        <td>{{ teamMember.getNameById(member[1].creatorId) | async }}</td>
-        <td>{{ timestamp.getDateFromTimestamp(member[1].createdTime) }}</td>
+        <td class="hidden sm:table-cell">
+          {{ teamMember.getNameById(member[1].creatorId) | async }}
+        </td>
+        <td class="hidden sm:table-cell">
+          {{ timestamp.getDateFromTimestamp(member[1].createdTime) }}
+        </td>
         <td *ngIf="listFilter === 'trial'">
           {{
             timestamp.getDateFromTimestamp(member[1].trialState.trialEndTime)
           }}
         </td>
-        <td>{{ member[1].steamLink }}</td>
+        <td class="hidden xl:table-cell">{{ member[1].steamLink }}</td>
         <td>
           <span
             class="p-0.5 rounded"
