@@ -32,13 +32,13 @@ import {
 
     <div class="border-b-2 border-userColor"></div>
 
-    <div class="flex text-white">
+    <div class="flex lg:flex-row flex-col text-white">
       <form
         #form="ngForm"
-        class="flex flex-col justify-between w-8/12 full_height border-r-2 border-userColor"
+        class="flex flex-col justify-between w-full lg:w-8/12 full_height border-r-2 border-userColor"
       >
         <div class="flex p-5">
-          <div class="w-1/2">
+          <div class="w-2/3">
             <div class="flex flex-col">
               <div
                 class="text-red-800 text-sm"
@@ -51,7 +51,7 @@ import {
               </div>
               <label>Verifizieren | Trial:</label>
               <select
-                class="bg-userColor w-1/2 mt-2 rounded p-1 cursor-pointer"
+                class="bg-userColor w-2/3 lg:w-1/2 mt-2 rounded p-1 cursor-pointer"
                 name="newMember.memberState"
                 [(ngModel)]="newMember.memberState"
                 required
@@ -76,7 +76,7 @@ import {
                 <div class="w-full">
                   <label class="mr-5">Trialbeginn:</label>
                   <input
-                    class="border-userColor border-b-2 p-2 w-1/3 rounded bg-transparent"
+                    class="border-userColor border-b-2 p-2 w-full rounded bg-transparent"
                     type="date"
                     name="currentDate"
                     [(ngModel)]="currentDate"
@@ -97,7 +97,7 @@ import {
                 <div class="w-full">
                   <label class="mr-9">Trialende:</label>
                   <input
-                    class="border-userColor border-b-2 p-2 w-1/3 rounded bg-transparent"
+                    class="border-userColor border-b-2 p-2 w-full rounded bg-transparent"
                     type="date"
                     name="trialEndDate"
                     [(ngModel)]="trialEndDate"
@@ -123,8 +123,8 @@ import {
         <div class="border-b-2 border-userColor mt-1 mb-1"></div>
 
         <div class="p-5">
-          <div class="flex justify-between">
-            <div class="flex flex-col items-start w-1/3 mr-5">
+          <div class="flex flex-col lg:flex-row justify-between">
+            <div class="flex flex-col items-start w-2/3 mr-5 mb-2">
               <div
                 class="text-red-800 text-sm"
                 *ngIf="
@@ -134,10 +134,10 @@ import {
               >
                 Username required.
               </div>
-              <div class="flex">
+              <div class="flex lg:flex-row flex-col w-full mb-5">
                 <label class="ml-1 mr-2">Username:</label>
                 <input
-                  class="border-userColor border-b-2 p-2 w-full rounded bg-transparent"
+                  class="border-userColor border-b-2 p-2 w-full lg:w-full rounded bg-transparent"
                   type="text"
                   name="newMember.userName"
                   [(ngModel)]="newMember.userName"
@@ -145,7 +145,7 @@ import {
                 />
               </div>
             </div>
-            <div class="flex flex-col items-start w-1/3 mr-5">
+            <div class="flex flex-col items-start w-2/3 mr-5 mb-2">
               <div
                 class="text-red-800 text-sm"
                 *ngIf="
@@ -155,10 +155,10 @@ import {
               >
                 Name required.
               </div>
-              <div class="flex">
+              <div class="flex lg:flex-row flex-col w-full mb-5">
                 <label class="ml-1 mr-2">Name:</label>
                 <input
-                  class="border-userColor border-b-2 p-2 w-full rounded bg-transparent"
+                  class="border-userColor border-b-2 p-2 w-full lg:w-full rounded bg-transparent"
                   type="text"
                   name="newMember.name"
                   [(ngModel)]="newMember.name"
@@ -166,7 +166,7 @@ import {
                 />
               </div>
             </div>
-            <div class="flex flex-col items-start w-1/3">
+            <div class="flex flex-col items-start w-2/3">
               <div
                 class="text-red-800 text-sm"
                 *ngIf="
@@ -175,10 +175,10 @@ import {
               >
                 Age required.
               </div>
-              <div class="flex">
+              <div class="flex lg:flex-row flex-col w-full mb-5">
                 <label class="ml-1 mr-2">Alter:</label>
                 <input
-                  class="border-userColor border-b-2 p-2 w-full rounded bg-transparent"
+                  class="border-userColor border-b-2 p-2 w-full lg:w-full rounded bg-transparent"
                   type="number"
                   name="newMember.age"
                   [(ngModel)]="newMember.age"
@@ -188,8 +188,10 @@ import {
             </div>
           </div>
 
-          <div class="flex items-center justify-between mt-10">
-            <div class="flex flex-col items-start w-1/2 mr-5">
+          <div
+            class="flex flex-col lg:flex-row lg:items-center justify-between mt-10"
+          >
+            <div class="flex flex-col items-start w-2/3 mb-5 mr-5">
               <div
                 class="text-red-800 text-sm"
                 *ngIf="
@@ -199,7 +201,7 @@ import {
               >
                 Steamlink required.
               </div>
-              <div class="flex">
+              <div class="flex w-full lg:flex-row flex-col">
                 <label class="ml-1 mr-2">Steamlink:</label>
                 <input
                   class="border-userColor w-full border-b-2 p-2 rounded bg-transparent"
@@ -210,7 +212,7 @@ import {
                 />
               </div>
             </div>
-            <div class="flex flex-col items-start w-1/2">
+            <div class="flex flex-col items-start w-2/3 mb-2">
               <div
                 class="text-red-800 text-sm"
                 *ngIf="
@@ -220,7 +222,7 @@ import {
               >
                 TeamSpeak-Id required.
               </div>
-              <div class="flex">
+              <div class="flex w-full lg:flex-row flex-col">
                 <label class="ml-1 w-40 mr-2">TeamSpeak Id:</label>
                 <input
                   class="border-userColor w-full border-b-2 p-2 rounded bg-transparent"
@@ -236,8 +238,8 @@ import {
 
         <div class="border-b-2 border-userColor mt-1 mb-1"></div>
 
-        <div class="p-5 flex justify-between">
-          <div class="flex flex-col w-1/3">
+        <div class="p-5 flex sm:flex-row flex-col justify-between">
+          <div class="flex flex-col w-2/3 sm:w-1/3">
             <div class="flex flex-col">
               <div
                 class="text-red-800 text-sm"
@@ -370,7 +372,7 @@ import {
               </select>
             </div>
           </div>
-          <div class="w-2/3 ml-5 mb-7">
+          <div class="w-2/3 h-64 sm:ml-5 mb-7 mt-5 sm:mt-0">
             <label>Infos | Smurfs:</label>
             <textarea
               name=""
@@ -392,7 +394,7 @@ import {
 
       <!-- GESPRÄCHSLEITFADEN -->
 
-      <div class="w-4/12 p-5">
+      <div class="w-full lg:w-4/12 p-5">
         <priminity-pryaz-member-ui-conversation-guide />
       </div>
     </div>

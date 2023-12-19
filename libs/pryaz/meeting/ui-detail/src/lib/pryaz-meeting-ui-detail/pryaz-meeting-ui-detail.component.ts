@@ -28,55 +28,58 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
     PryazSharedHeadlineComponent,
   ],
   template: `
-    <div class="flex items-center">
+    <div class="flex flex-col sm:flex-row sm:items-center">
       <priminity-pryaz-shared-headline
         *ngIf="!editToggleMeeting"
         [title]="specificMeeting?.title"
       />
+      <div>
+        <div
+          *ngIf="editToggleMeeting"
+          class="flex items-center sm:m-5 pl-5 pt-5 pr-5 w-full sm:w-1/4  text-white"
+        >
+          <input
+            class="bg-transparent w-full p-2 border-b-2 border-userColor rounded mt-2 mb-4"
+            type="text"
+            name="editMeeting.title"
+            [(ngModel)]="editMeeting.title"
+          />
+        </div>
 
-      <div
-        *ngIf="editToggleMeeting"
-        class="flex items-center m-5 w-1/4  text-white"
-      >
-        <input
-          class="bg-transparent w-full p-2 border-b-2 border-userColor rounded mt-2 mb-4"
-          type="text"
-          name="editMeeting.title"
-          [(ngModel)]="editMeeting.title"
-        />
+        <span
+          *ngIf="!editToggleMeeting"
+          [ngClass]="
+            specificMeeting?.status === 'open'
+              ? 'bg-blue-600'
+              : specificMeeting?.status === 'progress'
+                ? 'bg-orange-600'
+                : specificMeeting?.status === 'closed'
+                  ? 'bg-green-600'
+                  : 'bg-blue-600'
+          "
+          class="p-0.5 ml-5 rounded text-white"
+          >{{
+            specificMeeting?.status === 'open'
+              ? 'Offen'
+              : specificMeeting?.status === 'progress'
+                ? 'In Bearbeitung'
+                : specificMeeting?.status === 'closed'
+                  ? 'Abgeschlossen'
+                  : 'Offen'
+          }}</span
+        >
       </div>
-
-      <span
+      <div
         *ngIf="!editToggleMeeting"
-        [ngClass]="
-          specificMeeting?.status === 'open'
-            ? 'bg-blue-600'
-            : specificMeeting?.status === 'progress'
-              ? 'bg-orange-600'
-              : specificMeeting?.status === 'closed'
-                ? 'bg-green-600'
-                : 'bg-blue-600'
-        "
-        class="p-0.5 rounded text-white"
-        >{{
-          specificMeeting?.status === 'open'
-            ? 'Offen'
-            : specificMeeting?.status === 'progress'
-              ? 'In Bearbeitung'
-              : specificMeeting?.status === 'closed'
-                ? 'Abgeschlossen'
-                : 'Offen'
-        }}</span
+        class="flex flex-col items-start ml-5 mt-2 mb-5"
       >
-
-      <div *ngIf="!editToggleMeeting" class="flex flex-col items-start ml-5">
         <div class="text-userColor font-bold">Besprechungsdatum:</div>
         <div class="text-white">
           {{ timestamp.getDateFromTimestamp(specificMeeting!.meetingTime) }}
         </div>
       </div>
 
-      <div class="flex flex-col">
+      <div class="flex flex-col pl-5 pr-5">
         <select
           *ngIf="editToggleMeeting"
           name="editMeeting.status"
@@ -141,7 +144,7 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
         class="bg-userColor ml-2 p-1 text-white rounded hover:opacity-80 transition-all"
         (click)="dialogDelete()"
       >
-        Besprechung Löschen
+        Löschen
       </button>
     </div>
 

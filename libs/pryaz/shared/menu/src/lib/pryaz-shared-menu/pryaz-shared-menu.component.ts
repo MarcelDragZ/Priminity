@@ -1,7 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  OnChanges,
+  Output,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,18 +18,28 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
   imports: [CommonModule, RouterModule],
   template: ` <nav
     *ngIf="activeTeamMember"
-    class="fixed left-0 top-0 bottom-0 flex flex-col overflow-y-auto justify-between w-48 bg-neutral-900 border-r-2 text-userColor border-userColor"
+    [class.hidden]="!toggledMenu"
+    class="fixed left-0 top-0 bottom-0 flex flex-col overflow-y-auto justify-between w-full md:w-48 bg-neutral-900 border-r-2 text-userColor border-userColor"
   >
     <div>
-      <div class="flex items-center justify-start  mt-4 ml-4">
-        <img class="w-16 img-color" src="/assets/img/logo_simply_black.png" />
-        <p class="text-xl font-bold">PryaZ</p>
+      <div class="flex items-center justify-around md:justify-start mt-4">
+        <div (click)="toggleMenu(false)">
+          <img
+            class="w-12 img-color cursor-pointer hover:opacity-80 transition-all"
+            src="/assets/img/burger_menu.png"
+          />
+        </div>
+        <div class="flex items-center">
+          <img class="w-16 img-color" src="/assets/img/logo_simply_black.png" />
+          <p class="text-xl font-bold">PryaZ</p>
+        </div>
       </div>
 
       <a
         *ngIf="activeTeamMember"
+        (click)="toggleMenu(true)"
         [routerLink]="['/profile', activeTeamMember[0]]"
-        class="flex items-center justify-around cursor-pointer w-full bg-neutral-800 mt-5 rounded hover:bg-neutral-900 hover:transition-all "
+        class="flex items-center justify-start pl-5 md:pl-0 md:justify-around cursor-pointer w-full bg-neutral-800 mt-5 rounded hover:bg-neutral-900 hover:transition-all "
       >
         <div>
           <img
@@ -34,7 +47,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
             src="/assets/img/avatar_priminity.png"
           />
         </div>
-        <div class="font-bold ">
+        <div class="font-bold md:ml-0 ml-5">
           <p class="border-b-2 border-userColor border-solid border-opacity-75">
             {{ activeTeamMember[1].position }}
           </p>
@@ -51,6 +64,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
       <div class="flex flex-col ml-3 mr-3 mt-5">
         <a
           [routerLink]="['/home']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -59,6 +73,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         >
         <a
           [routerLink]="['/task']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -67,6 +82,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         >
         <a
           [routerLink]="['/meeting']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -80,6 +96,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
       <div class="flex flex-col ml-3 mr-3 mt-5">
         <a
           [routerLink]="['/member/create']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -88,6 +105,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         >
         <a
           [routerLink]="['/member']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -131,6 +149,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
       >
         <a
           [routerLink]="['/teammember/create']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -139,6 +158,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         >
         <a
           [routerLink]="['/teammember/list']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -152,6 +172,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
       <div class="flex flex-col ml-3 mr-3 mt-5">
         <a
           [routerLink]="['/organisation']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -160,6 +181,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         >
         <a
           [routerLink]="['/changelog']"
+          (click)="toggleMenu(true)"
           class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
           ><img
             class="w-6 object-contain mr-2 img-color"
@@ -197,11 +219,14 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PryazSharedMenuComponent {
+export class PryazSharedMenuComponent implements OnChanges {
   router: Router = inject(Router);
 
   @Input() activeTeamMember!: [string, TeamMemberInterface] | null;
+  @Input() toggleMenuInput!: boolean | null;
+  @Output() emitToggledMenu = new EventEmitter<boolean>();
 
+  toggledMenu = true;
   advancedMenuIcon = '▶';
   advancedMenu = false;
 
@@ -214,6 +239,22 @@ export class PryazSharedMenuComponent {
   //     this.advancedMenu = true;
   //   }
   // }
+  ngOnChanges(): void {
+    this.toggledMenu = this.toggleMenuInput as boolean;
+  }
+
+  toggleMenu(value: boolean) {
+    if (this.toggledMenu && window.innerWidth < 768) {
+      this.toggledMenu = false;
+      this.emitToggledMenu.emit();
+    }
+    if (this.toggledMenu && window.innerWidth > 768 && !value) {
+      this.toggledMenu = false;
+      this.emitToggledMenu.emit();
+    } else {
+      this.toggledMenu = true;
+    }
+  }
 
   logout() {
     localStorage.clear();
