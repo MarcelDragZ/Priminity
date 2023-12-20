@@ -11,7 +11,6 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
 import { TaskInterface } from '@priminity/shared/environments/classes';
 import { PryazSharedQuillTextComponent } from '@priminity/pryaz/shared/quill-text';
 
-
 @Component({
   selector: 'priminity-pryaz-task-ui-create',
   standalone: true,
@@ -24,8 +23,8 @@ import { PryazSharedQuillTextComponent } from '@priminity/pryaz/shared/quill-tex
   template: `
     <div class="flex flex-col">
       <priminity-pryaz-shared-headline [title]="'Aufgabe erstellen'" />
-      <div class="flex items-center justify-between">
-        <div class="flex items-center  w-1/2">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+        <div class="flex items-center  w-full lg:w-1/2 ">
           <input
             class="bg-transparent text-white w-full p-2 m-5 border-b-2 border-userColor rounded mt-2 mb-4"
             type="text"
@@ -35,7 +34,7 @@ import { PryazSharedQuillTextComponent } from '@priminity/pryaz/shared/quill-tex
 
           <select
             name="editTask.status"
-            class="bg-userColor text-white rounded p-1 cursor-pointer"
+            class="bg-userColor text-white rounded p-1 cursor-pointer mr-5"
             [(ngModel)]="newTask.status"
           >
             <option selected value="open">Offen</option>

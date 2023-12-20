@@ -24,6 +24,7 @@
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
+  scrollbar-color: rgba(var(--dynamic-color));
 }
 
 body {
@@ -43,8 +44,11 @@ body {
   background: rgba(40, 40, 40, 1);
 }
 
-* {
-  scrollbar-color: rgba(var(--dynamic-color));
+ul,
+ol {
+  list-style-type: disc;
+  padding-left: 1em;
+  color: white;
 }
 
 /* RED */
@@ -270,6 +274,18 @@ body {
 button.ql-active {
   color: rgb(var(--dynamic-color)) !important;
   background-color: rgb(23, 23, 23);
+}
+
+.ql-size-small {
+  font-size: 12px;
+}
+
+.ql-size-large {
+  font-size: 18px;
+}
+
+.ql-size-huge {
+  font-size: 30px;
 }
 
 svg {

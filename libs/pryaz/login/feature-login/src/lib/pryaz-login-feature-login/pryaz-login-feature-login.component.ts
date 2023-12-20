@@ -25,7 +25,9 @@ import {
   ],
   template: `
     <priminity-pryaz-shared-welcome />
-    <div class="flex justify-end text-white m-16">
+    <div
+      class="flex flex-col items-end md:flex-row md:justify-end text-white m-16"
+    >
       Not a PryaZ user?
       <a
         [routerLink]="['/registry']"

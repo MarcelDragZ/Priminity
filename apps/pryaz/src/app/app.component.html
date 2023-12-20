@@ -1,6 +1,12 @@
-<priminity-pryaz-shared-menu [activeTeamMember]="activeTeamMember$ | async"
+<priminity-pryaz-shared-menu [activeTeamMember]="activeTeamMember$ | async" [toggleMenuInput]="toggledMenu"
+  (emitToggledMenu)="toggleMenu()"
   *ngIf="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password'" />
 
-<div [class.ml-48]="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password'">
+<div (click)="toggleMenu()" class="fixed left-0 top-0 w-12 img-color cursor-pointer"><img
+    *ngIf="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password' && !toggledMenu"
+    src="/assets/img/burger_menu.png"></div>
+
+<div [class.hidden]="toggledMenu && !screenWidth"
+  [class.ml-48]="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password' && toggledMenu">
   <router-outlet />
 </div>
