@@ -101,6 +101,7 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
     <priminity-pryaz-member-ui-list
       [memberList]="memberList$ | async"
       [listFilter]="listFilter$ | async"
+      (sortFilter)="sortListFilter($event)"
     /> `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -108,24 +109,34 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
 export class PryazMemberFeatureListComponent {
   member = new Member();
 
+  sortFilter = '';
   searchFilter = '';
 
+  sortFilter$ = new BehaviorSubject<string>('');
   listFilter$ = new BehaviorSubject<string>('all');
   searchFilter$ = new BehaviorSubject<string>('');
 
   memberList$: Observable<[string, MemberInterface][]> = combineLatest([
+    this.sortFilter$,
     this.listFilter$,
     this.searchFilter$,
   ]).pipe(
-    switchMap(([filter, searchFilter]) =>
+    switchMap(([sort, filter, searchFilter]) =>
       this.member.getItems$().pipe(
         map((members) => {
           let sorted = Object.entries(members ?? {}).sort((a, b) => {
-            return (
+            const stateDiff =
               this.getPositionRank(a[1].memberState) -
-              this.getPositionRank(b[1].memberState)
-            );
+              this.getPositionRank(b[1].memberState);
+
+            return sort === 'trialEndTime'
+              ? stateDiff ||
+                  a[1].trialState.trialEndTime - b[1].trialState.trialEndTime
+              : sort === 'createdTime'
+                ? stateDiff || a[1].createdTime - b[1].createdTime
+                : stateDiff;
           });
+
           if (filter !== 'all') {
             sorted = sorted.filter((member) =>
               filter === 'member'
@@ -174,6 +185,10 @@ export class PryazMemberFeatureListComponent {
       default:
         return 4;
     }
+  }
+
+  sortListFilter(sort: string) {
+    this.sortFilter$.next(sort);
   }
 
   changeListFilter(filter: string) {
