@@ -24,8 +24,8 @@ import {
       <td class="pl-5">Nr.</td>
       <td>Titel</td>
       <td>Status</td>
-      <td>Erstellt von</td>
-      <td>Erstellt am</td>
+      <td class="hidden lg:table-cell">Erstellt von</td>
+      <td class="hidden sm:table-cell">Erstellt am</td>
     </tr>
 
     <ng-container *ngFor="let task of taskList; let i = index">
@@ -59,10 +59,12 @@ import {
             }}</span
           >
         </td>
-        <td>
+        <td class="hidden lg:table-cell">
           {{ teamMember.getNameById(task[1].creatorId) | async }}
         </td>
-        <td>{{ timestamp.getDateFromTimestamp(task[1].createdTime) }}</td>
+        <td class="hidden sm:table-cell">
+          {{ timestamp.getDateFromTimestamp(task[1].createdTime) }}
+        </td>
       </tr>
     </ng-container>
   </table>`,

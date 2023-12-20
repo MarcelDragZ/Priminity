@@ -20,50 +20,60 @@ import { BehaviorSubject } from 'rxjs';
   selector: 'priminity-pryaz-home-ui-home',
   standalone: true,
   imports: [CommonModule],
-  template: ` <div
-    class="w-full h-full -mt-16 flex flex-col justify-between text-white"
-  >
-    <div
-      class="flex justify-center items-center w-full h-1/2 border-2 border-userColor rounded-xl mb-2"
-    >
-      <div class="flex items-center justify-between w-1/3">
-        <div class="text-2xl">Aktuelle Member</div>
-        <div class="h-14 w-1 border-r-2 border-userColor p-5"></div>
-        <div class="text-2xl p-5">{{ memberCount | async }}</div>
-      </div>
-    </div>
-    <div class="flex flex-row justify-center items-center w-full h-1/2">
+  template: `
+    <div class="w-full h-full -mt-16 flex flex-col justify-between text-white">
       <div
-        class="flex items-center justify-center w-1/3 mr-2 h-full border-2 border-userColor rounded-xl"
+        class="flex justify-center items-center w-full h-1/2 border-2 border-userColor rounded-xl mb-2"
       >
-        <div class="flex flex-col items-center justify-between w-2/3 h-1/3">
-          <div>Offene Aufgaben</div>
-          <div class="w-2/3 border-b-2 border-userColor"></div>
-          <div>{{ taskCount | async }}</div>
+        <div
+          class="flex flex-col md:flex-row items-center justify-between w-1/3"
+        >
+          <div class="text-center text-2xl">Aktuelle Member</div>
+          <div
+            class="md:h-14 w-full md:w-1 border-b-2 md:border-r-2 md:border-b-0 border-userColor p-5"
+          ></div>
+          <div class="text-2xl p-5">{{ memberCount | async }}</div>
         </div>
       </div>
-      <div
-        class="flex items-center justify-center w-1/3 mr-2 h-full border-2 border-userColor rounded-xl"
-      >
-        <div class="flex flex-col items-center justify-between w-2/3 h-1/3">
-          <div>Nächste Besprechung</div>
-          <div class="w-2/3 border-b-2 border-userColor"></div>
+      <div class="flex flex-col md:flex-row items-center w-full h-1/2">
+        <div
+          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl mb-2"
+        >
+          <div
+            class="flex flex-col items-center justify-between w-2/3 md:h-1/3"
+          >
+            <div class="text-center">Offene Aufgaben</div>
+            <div class="w-2/3 border-b-2 border-userColor"></div>
+            <div>{{ taskCount | async }}</div>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl mb-2"
+        >
+          <div
+            class="flex flex-col items-center justify-between w-2/3 md:h-1/3"
+          >
+            <div class="text-center">Nächste Besprechung</div>
+            <div class="w-2/3 border-b-2 border-userColor"></div>
 
-          <div>{{ nextMeeting | async }}</div>
+            <div>{{ nextMeeting | async }}</div>
+          </div>
         </div>
-      </div>
-      <div
-        class="flex items-center justify-center w-1/3 h-full border-2 border-userColor rounded-xl"
-      >
-        <div class="flex flex-col items-center justify-between w-2/3 h-1/3">
-          <div>Aktuelles Datum</div>
-          <div class="w-2/3 border-b-2 border-userColor"></div>
-          <div>{{ day }}.{{ month }}.{{ year }}</div>
-          <div>{{ hours }}:{{ minutes }}:{{ seconds }} Uhr</div>
+        <div
+          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl"
+        >
+          <div
+            class="flex flex-col items-center justify-between w-2/3 md:h-1/3"
+          >
+            <div class="text-center">Aktuelles Datum</div>
+            <div class="w-2/3 border-b-2 border-userColor"></div>
+            <div>{{ day }}.{{ month }}.{{ year }}</div>
+            <div>{{ hours }}:{{ minutes }}:{{ seconds }} Uhr</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>`,
+  `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

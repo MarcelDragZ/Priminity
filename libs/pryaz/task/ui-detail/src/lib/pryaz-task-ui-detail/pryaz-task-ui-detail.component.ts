@@ -26,71 +26,74 @@ import { PryazSharedQuillTextComponent } from '@priminity/pryaz/shared/quill-tex
     PryazSharedQuillTextComponent,
   ],
   template: `
-    <div class="flex items-center">
+    <div class="flex flex-col sm:flex-row sm:items-center">
       <priminity-pryaz-shared-headline
         *ngIf="!editToggleTask"
         [title]="specificTask?.title"
       />
+      <div>
+        <div
+          *ngIf="editToggleTask"
+          class="flex items-center sm:m-5 pl-5 sm:pl-0 pt-5 pr-5 w-full text-white"
+        >
+          <input
+            class="bg-transparent w-full p-2 border-b-2 border-userColor rounded mt-2 mb-4"
+            type="text"
+            name="editTask.title"
+            [(ngModel)]="editTask.title"
+          />
+        </div>
 
-      <div
-        *ngIf="editToggleTask"
-        class="flex items-center m-5 w-1/4  text-white"
-      >
-        <input
-          class="bg-transparent w-full p-2 border-b-2 border-userColor rounded mt-2 mb-4"
-          type="text"
-          name="editTask.title"
-          [(ngModel)]="editTask.title"
-        />
-      </div>
-
-      <span
-        *ngIf="!editToggleTask"
-        [ngClass]="
-          specificTask?.status === 'open'
-            ? 'bg-blue-600'
-            : specificTask?.status === 'progress'
-              ? 'bg-orange-600'
-              : specificTask?.status === 'closed'
-                ? 'bg-green-600'
-                : 'bg-blue-600'
-        "
-        class="p-0.5 rounded text-white"
-        >{{
-          specificTask?.status === 'open'
-            ? 'Offen'
-            : specificTask?.status === 'progress'
-              ? 'In Bearbeitung'
-              : specificTask?.status === 'closed'
-                ? 'Abgeschlossen'
-                : 'Offen'
-        }}</span
-      >
-      <select
-        *ngIf="editToggleTask"
-        name="editTask.status"
-        class="bg-userColor text-white rounded p-1 cursor-pointer"
-        [(ngModel)]="editTask.status"
-      >
-        <option selected value="{{ editTask.status }}">
-          {{
-            editTask.status === 'open'
+        <span
+          *ngIf="!editToggleTask"
+          [ngClass]="
+            specificTask?.status === 'open'
+              ? 'bg-blue-600'
+              : specificTask?.status === 'progress'
+                ? 'bg-orange-600'
+                : specificTask?.status === 'closed'
+                  ? 'bg-green-600'
+                  : 'bg-blue-600'
+          "
+          class="p-0.5 ml-5 rounded text-white"
+          >{{
+            specificTask?.status === 'open'
               ? 'Offen'
-              : editTask.status === 'progress'
+              : specificTask?.status === 'progress'
                 ? 'In Bearbeitung'
-                : editTask.status === 'closed'
+                : specificTask?.status === 'closed'
                   ? 'Abgeschlossen'
                   : 'Offen'
-          }}
-        </option>
-        <option *ngIf="editTask.status !== 'open'" value="open">Offen</option>
-        <option *ngIf="editTask.status !== 'progress'" value="progress">
-          In Bearbeitung
-        </option>
-        <option *ngIf="editTask.status !== 'closed'" value="closed">
-          Abgeschlossen
-        </option>
-      </select>
+          }}</span
+        >
+      </div>
+      <div class="flex flex-col pl-5 pr-5 mt-5">
+        <select
+          *ngIf="editToggleTask"
+          name="editTask.status"
+          class="bg-userColor text-white rounded p-1 cursor-pointer mb-5"
+          [(ngModel)]="editTask.status"
+        >
+          <option selected value="{{ editTask.status }}">
+            {{
+              editTask.status === 'open'
+                ? 'Offen'
+                : editTask.status === 'progress'
+                  ? 'In Bearbeitung'
+                  : editTask.status === 'closed'
+                    ? 'Abgeschlossen'
+                    : 'Offen'
+            }}
+          </option>
+          <option *ngIf="editTask.status !== 'open'" value="open">Offen</option>
+          <option *ngIf="editTask.status !== 'progress'" value="progress">
+            In Bearbeitung
+          </option>
+          <option *ngIf="editTask.status !== 'closed'" value="closed">
+            Abgeschlossen
+          </option>
+        </select>
+      </div>
     </div>
 
     <div class="m-5 mt-0">
@@ -120,7 +123,7 @@ import { PryazSharedQuillTextComponent } from '@priminity/pryaz/shared/quill-tex
         class="bg-userColor ml-2 p-1 text-white rounded hover:opacity-80 transition-all"
         (click)="dialogDelete()"
       >
-        Aufgabe Löschen
+        Löschen
       </button>
     </div>
 

@@ -19,19 +19,18 @@ import { ColorPickerModule } from 'ngx-color-picker';
   imports: [CommonModule, FormsModule, ColorPickerModule],
   template: `
     <div
-      class="flex justify-between  items-center m-5 border-userColor border-b-2 rounded"
+      class="flex justify-between flex-col md:flex-row  items-center m-5 border-userColor border-b-2 rounded"
     >
-      <div class="flex items-center m-5">
+      <div
+        class="flex flex-col md:flex-row text-center md:text-left items-center m-5"
+      >
         <img class="w-44 rounded-full" src="/assets/img/avatar_priminity.png" />
         <div
-          class="flex flex-col justify-around ml-5 text-white font-bold h-36"
+          class="flex flex-col justify-around md:ml-5 text-white font-bold md:h-36"
         >
           <div>
             <span>{{ specificTeamMember?.position }}</span>
-            <div
-              class="flex
-           flex-col"
-            >
+            <div class="flex flex-col">
               <input
                 *ngIf="editProfile"
                 class="bg-transparent border-b-2 border-userColor rounded mt-2"
@@ -90,7 +89,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
       </div>
     </div>
 
-    <div class="flex justify-around m-5 text-white">
+    <div class="flex flex-col md:flex-row justify-around m-5 text-white">
       <div class="flex flex-col w-1/4">
         <span class="text-userColor font-bold mb-5">Informationen</span>
 

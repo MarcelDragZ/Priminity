@@ -24,8 +24,8 @@ import {
       <td class="pl-5">Nr.</td>
       <td>Titel</td>
       <td>Status</td>
-      <td>Erstellt von</td>
-      <td>Besprechungsdatum</td>
+      <td class="hidden lg:table-cell">Erstellt von</td>
+      <td class="hidden sm:table-cell">Besprechungsdatum</td>
     </tr>
 
     <ng-container *ngFor="let meeting of meetingList; let i = index">
@@ -59,10 +59,12 @@ import {
             }}</span
           >
         </td>
-        <td>
+        <td class="hidden lg:table-cell">
           {{ teamMember.getNameById(meeting[1].creatorId) | async }}
         </td>
-        <td>{{ timestamp.getDateFromTimestamp(meeting[1].meetingTime) }}</td>
+        <td class="hidden sm:table-cell">
+          {{ timestamp.getDateFromTimestamp(meeting[1].meetingTime) }}
+        </td>
       </tr>
     </ng-container>
   </table>`,
