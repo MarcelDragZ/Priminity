@@ -120,7 +120,8 @@ export class PryazMeetingFeatureListComponent {
           let sorted = Object.entries(meetings ?? {}).sort((a, b) => {
             return (
               this.getPositionRank(a[1].status) -
-              this.getPositionRank(b[1].status)
+                this.getPositionRank(b[1].status) ||
+              b[1].createdTime - a[1].createdTime
             );
           });
           if (filter !== 'all') {

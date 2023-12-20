@@ -116,7 +116,8 @@ export class PryazTaskFeatureListComponent {
           let sorted = Object.entries(tasks ?? {}).sort((a, b) => {
             return (
               this.getPositionRank(a[1].status) -
-              this.getPositionRank(b[1].status)
+                this.getPositionRank(b[1].status) ||
+              b[1].createdTime - a[1].createdTime
             );
           });
           if (filter !== 'all') {

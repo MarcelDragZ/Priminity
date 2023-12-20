@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,8 +26,25 @@ import {
       <td class="pl-5">Nr.</td>
       <td>Member</td>
       <td class="hidden sm:table-cell">Erstellt von</td>
-      <td class="hidden sm:table-cell">Verifiziert seit</td>
-      <td *ngIf="listFilter === 'trial'">Trial Ende</td>
+      <td
+        class="hidden sm:table-cell cursor-pointer"
+        (click)="sortList('createdTime')"
+      >
+        <span class="flex"
+          >Verifiziert seit
+          <img class="w-3 img-color ml-2" src="/assets/img/arrow-up-down.png"
+        /></span>
+      </td>
+      <td
+        class="cursor-pointer"
+        *ngIf="listFilter === 'trial'"
+        (click)="sortList('trialEndTime')"
+      >
+        <span class="flex"
+          >Trial Ende
+          <img class="w-3 img-color ml-2" src="/assets/img/arrow-up-down.png"
+        /></span>
+      </td>
       <td class="hidden xl:table-cell">Steam</td>
       <td>Status</td>
     </tr>
@@ -86,6 +105,7 @@ export class PryazMemberUiListComponent {
 
   @Input() memberList!: [string, MemberInterface][] | null;
   @Input() listFilter!: string | null;
+  @Output() sortFilter = new EventEmitter<string>();
 
   timestamp = new Timestamp();
   teamMember = new TeamMember();
@@ -98,5 +118,9 @@ export class PryazMemberUiListComponent {
         preserveFragment: true,
       }),
     );
+  }
+
+  sortList(sort: string) {
+    this.sortFilter.emit(sort);
   }
 }
