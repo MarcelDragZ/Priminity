@@ -23,15 +23,15 @@ import { PryazSharedQuillTextComponent } from '@priminity/pryaz/shared/quill-tex
   template: `
     <div class="flex flex-col">
       <priminity-pryaz-shared-headline [title]="'Besprechung erstellen'" />
-      <div class="flex items-center justify-between">
-        <div class="flex items-center  w-1/2">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+        <div class="flex items-center  w-full lg:w-1/2 ">
           <input
             class="bg-transparent text-white w-full p-2 m-5 border-b-2 border-userColor rounded mt-2 mb-4"
             type="text"
             name="editMeeting.title"
             [(ngModel)]="newMeeting.title"
           />
-          <div>
+          <div class="mr-5">
             <select
               name="editMeeting.status"
               class="bg-userColor text-white rounded p-1 cursor-pointer"

@@ -17,7 +17,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
   imports: [CommonModule, FormsModule, RouterModule],
   template: ` <div class="flex justify-center">
     <div
-      class="flex items-center flex-col border-userColor border-2 w-6/12 rounded"
+      class="flex items-center flex-col border-userColor border-2 w-full md:w-6/12 rounded"
     >
       <h1 class="text-white text-3xl m-5 pb-2 border-userColor border-b-2">
         Log in

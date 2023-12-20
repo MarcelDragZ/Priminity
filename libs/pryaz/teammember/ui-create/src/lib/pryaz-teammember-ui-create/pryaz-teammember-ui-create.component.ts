@@ -18,7 +18,7 @@ import { RegCodeInterface } from '@priminity/shared/environments/classes';
       class="bg-neutral-900 h-10 border-b-userColor border-opacity-30 border-b-2"
     >
       <td class="pl-5">Nr.</td>
-      <td>Position</td>
+      <td class="hidden sm:table-cell">Position</td>
       <td>Reg-Code</td>
       <td class="w-28 pr-5">test</td>
     </tr>
@@ -27,7 +27,7 @@ import { RegCodeInterface } from '@priminity/shared/environments/classes';
         class="h-9 border-b-neutral-900 border-b-2 border-opacity-80 hover:bg-neutral-900 transition-all"
       >
         <td class="pl-5">{{ i + 1 }}</td>
-        <td>{{ regCode[1].position }}</td>
+        <td class="hidden sm:table-cell">{{ regCode[1].position }}</td>
         <td>{{ regCode[1].key }}</td>
         <td class="w-28 pr-5">
           <button

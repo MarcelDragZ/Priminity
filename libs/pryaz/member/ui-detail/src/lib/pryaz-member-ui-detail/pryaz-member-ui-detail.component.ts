@@ -161,15 +161,15 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
           class="bg-userColor ml-2 p-1 text-white rounded hover:opacity-80 transition-all"
           (click)="editStatus('delete')"
         >
-          Member Löschen
+          Löschen
         </button>
       </div>
     </div>
 
     <div class="w-full border-b-2 border-userColor mb-5 mt-5"></div>
 
-    <div class="flex justify-start m-5 text-white">
-      <div class="flex flex-col w-1/2">
+    <div class="flex flex-col xl:flex-row justify-start m-5 text-white">
+      <div class="flex flex-col w-full xl:w-1/2">
         <span class="text-userColor font-bold mb-5">Details</span>
 
         <div *ngIf="!editToggleMember" class="flex flex-col">
@@ -314,7 +314,12 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
 
         <div *ngIf="!editToggleMember" class="flex flex-col">
           <span>Steam:</span>
-          <span class="mb-4">{{ editMember.steamLink }}</span>
+          <a
+            target="_blank"
+            class="mb-4 break-all decoration-slate-400 text-blue-500"
+            href="{{ editMember.steamLink }}"
+            >{{ editMember.steamLink }}</a
+          >
         </div>
         <div *ngIf="editToggleMember" class="flex flex-col">
           <span>Steam:</span>
@@ -342,9 +347,9 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
 
         <div *ngIf="!editToggleMember" class="flex flex-col">
           <span>Infos:</span>
-          <span class="mb-4">
-            <pre>{{ editMember.info }}</pre>
-          </span>
+          <pre class="mb-4 whitespace-pre-line break-all">{{
+            editMember.info
+          }}</pre>
         </div>
         <div *ngIf="editToggleMember" class="flex flex-col">
           <span>Infos:</span>
@@ -357,7 +362,7 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
         </div>
       </div>
 
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-full xl:w-1/2">
         <span class="text-userColor font-bold mb-5">Trial-Status</span>
 
         <div class="flex flex-col">
@@ -449,7 +454,7 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
       </div>
     </div>
     <div class="flex justify-start m-5 text-white">
-      <div class="flex flex-col w-1/2">
+      <div class="flex flex-col w-full xl:w-1/2">
         <span class="text-userColor font-bold mb-5">Cs2 Infos</span>
 
         <div class="flex flex-col">

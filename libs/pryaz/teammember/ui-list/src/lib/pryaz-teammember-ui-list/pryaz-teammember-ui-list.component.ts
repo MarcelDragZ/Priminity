@@ -22,10 +22,10 @@ import { ActivatedRoute, Router } from '@angular/router';
       <td class="pl-5">Nr.</td>
       <td>Name</td>
       <td>Position</td>
-      <td>E-Mail</td>
-      <td>Steam</td>
+      <td class="hidden lg:table-cell">E-Mail</td>
+      <td class="hidden 2xl:table-cell">Steam</td>
       <td>Aktiviert</td>
-      <td class="w-36 pr-5">Erstellte Member</td>
+      <td class="hidden sm:table-cell w-36 pr-5">Erstellte Member</td>
     </tr>
 
     <ng-container *ngFor="let teamMember of teamMemberList; let i = index">
@@ -36,8 +36,8 @@ import { ActivatedRoute, Router } from '@angular/router';
         <td class="pl-5">{{ i + 1 }}</td>
         <td>{{ teamMember[1].name }} {{ teamMember[1].userName }}</td>
         <td>{{ teamMember[1].position }}</td>
-        <td>{{ teamMember[1].email }}</td>
-        <td>{{ teamMember[1].steamLink }}</td>
+        <td class="hidden lg:table-cell">{{ teamMember[1].email }}</td>
+        <td class="hidden 2xl:table-cell">{{ teamMember[1].steamLink }}</td>
         <td>
           <span
             class="rounded p-0.5"
@@ -45,7 +45,9 @@ import { ActivatedRoute, Router } from '@angular/router';
             >{{ teamMember[1].active ? 'Aktiviert' : 'Deaktiviert' }}</span
           >
         </td>
-        <td class="w-36 pr-5">{{ getCreatedMemberCount(teamMember[0]) }}</td>
+        <td class="hidden sm:table-cell w-36 pr-5">
+          {{ getCreatedMemberCount(teamMember[0]) }}
+        </td>
       </tr>
     </ng-container>
   </table>`,

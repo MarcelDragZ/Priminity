@@ -21,7 +21,7 @@ import {
   imports: [CommonModule, FormsModule, RouterModule],
   template: ` <div class="flex justify-center w-screen ">
     <div
-      class="flex items-center flex-col border-userColor border-2 w-6/12 rounded"
+      class="flex items-center flex-col border-userColor border-2 w-full md:w-6/12 rounded"
     >
       <div class="flex items-center justify-between">
         <a
@@ -42,8 +42,8 @@ import {
         </span>
       </div>
       <form #form="ngForm" class="flex flex-col items-center w-full mt-5">
-        <div class="flex justify-between w-8/12">
-          <div class="w-5/12">
+        <div class="flex flex-col md:flex-row justify-between w-8/12">
+          <div class="w-full md:w-5/12">
             <div
               class="text-red-800 text-sm"
               *ngIf="form.controls['name']?.invalid && clickedSignupButton"
@@ -59,7 +59,7 @@ import {
               required
             />
           </div>
-          <div class="w-5/12">
+          <div class="w-full mt-5 md:w-5/12 md:mt-0">
             <div
               class="text-red-800 text-sm"
               *ngIf="form.controls['userName']?.invalid && clickedSignupButton"
@@ -77,8 +77,8 @@ import {
           </div>
         </div>
 
-        <div class="flex justify-between w-8/12 mt-5">
-          <div class="w-5/12">
+        <div class="flex flex-col md:flex-row justify-between w-8/12 mt-5">
+          <div class="w-full md:w-5/12">
             <div
               class="text-red-800 text-sm"
               *ngIf="form.controls['email']?.invalid && clickedSignupButton"
@@ -95,7 +95,7 @@ import {
             />
           </div>
 
-          <div class="w-5/12">
+          <div class="w-full mt-5 md:w-5/12 md:mt-0">
             <div
               class="text-red-800 text-sm"
               *ngIf="form.controls['phone']?.invalid && clickedSignupButton"
