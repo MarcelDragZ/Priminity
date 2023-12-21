@@ -112,30 +112,6 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
             src="/assets/img/user.png"
           />Memberliste</a
         >
-        <!-- <div
-          (click)="toggleAdvancedMenu()"
-          class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all  p-1 rounded"
-        >
-          <img
-            class="w-6 object-contain mr-2 img-color"
-            src="/assets/img/task.png"
-          />
-          <span class="mt-2">
-            Ansichten
-            <span class="text-xs">{{ advancedMenuIcon }}</span>
-          </span>
-        </div> -->
-        <!-- Advanced Menu on Toggle -->
-        <!-- <div [class.fade_in]="advancedMenu" class="h-full" *ngIf="advancedMenu">
-          <a
-            [routerLink]="['/member']"
-            class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
-            ><img
-              class="w-6 object-contain mr-2 img-color"
-              src="/assets/img/user.png"
-            />Memberliste</a
-          >
-        </div> -->
       </div>
 
       <div
@@ -164,29 +140,6 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
             class="w-6 object-contain mr-2 img-color"
             src="/assets/img/user.png"
           />Teammitglieder</a
-        >
-      </div>
-
-      <div class="border-b-2 border-neutral-500 border-opacity-20 mt-5"></div>
-
-      <div class="flex flex-col ml-3 mr-3 mt-5">
-        <a
-          [routerLink]="['/organisation']"
-          (click)="toggleMenu(true)"
-          class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
-          ><img
-            class="w-6 object-contain mr-2 img-color"
-            src="/assets/img/orga.png"
-          />Organisatorisches</a
-        >
-        <a
-          [routerLink]="['/changelog']"
-          (click)="toggleMenu(true)"
-          class="flex items-center cursor-pointer hover:bg-neutral-800 hover:transition-all p-1 rounded"
-          ><img
-            class="w-6 object-contain mr-2 img-color"
-            src="/assets/img/changelog.png"
-          />Changelog</a
         >
       </div>
     </div>

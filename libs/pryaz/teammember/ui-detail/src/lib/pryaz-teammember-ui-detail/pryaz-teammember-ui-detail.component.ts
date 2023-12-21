@@ -67,21 +67,7 @@ import {
               class="flex
              flex-col"
             >
-              <input
-                *ngIf="editProfile"
-                class="bg-transparent border-b-2 border-userColor rounded mt-2"
-                type="text"
-                name="editTeamMember.name"
-                [(ngModel)]="editTeamMember.name"
-              />
-              <input
-                *ngIf="editProfile"
-                class="bg-transparent border-b-2 border-userColor rounded mt-2"
-                type="text"
-                name="editTeamMember.userName"
-                [(ngModel)]="editTeamMember.userName"
-              />
-              <span *ngIf="!editProfile"
+              <span
                 >{{ editTeamMember.name }} {{ editTeamMember.userName }}</span
               >
             </div>
@@ -140,18 +126,9 @@ import {
       <div class="flex flex-col w-1/4">
         <span class="text-userColor font-bold mb-5">Informationen</span>
 
-        <div *ngIf="!editProfile" class="flex flex-col">
+        <div class="flex flex-col">
           <span>Email:</span>
           <span class="mb-4">{{ editTeamMember.email }}</span>
-        </div>
-        <div *ngIf="editProfile" class="flex flex-col">
-          <span>Email:</span>
-          <input
-            class="bg-transparent border-b-2 border-userColor w-2/3 rounded mt-2 mb-4"
-            type="text"
-            name="editTeamMember.email"
-            [(ngModel)]="editTeamMember.email"
-          />
         </div>
 
         <div *ngIf="!editProfile" class="flex flex-col">

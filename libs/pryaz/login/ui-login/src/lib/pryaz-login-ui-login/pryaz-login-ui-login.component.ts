@@ -44,16 +44,32 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         </div>
         <div class="flex flex-col items-start w-6/12 mt-7 text-white">
           <div><input class="mr-2" type="checkbox" />Remember me</div>
-          <div class="mt-2 text-userColor">
+          <!-- <div class="mt-2 text-userColor">
             <a [routerLink]="['/forgot-password']">Forgot my password</a>
-          </div>
+          </div> -->
         </div>
-        <div class="flex justify-center mt-5 mb-5 w-6/12">
+        <div class="flex justify-center mt-5 mb-2 w-6/12">
           <button
             (click)="login()"
             class="w-full rounded p-2 text-white bg-userColor hover:opacity-80 transition-all"
           >
             Log in
+          </button>
+        </div>
+        <div class="flex justify-center  mb-2 w-6/12">
+          <button
+            (click)="login('admin')"
+            class="w-full rounded p-2 text-black bg-white hover:opacity-80 transition-all"
+          >
+            Admin Guest Log in
+          </button>
+        </div>
+        <div class="flex justify-center mb-5 w-6/12">
+          <button
+            (click)="login('mod')"
+            class="w-full rounded p-2 text-black bg-white hover:opacity-80 transition-all"
+          >
+            Mod Guest Log in
           </button>
         </div>
       </form>
@@ -72,7 +88,17 @@ export class PryazLoginUiLoginComponent {
     password: '',
   };
 
-  login() {
-    this.loginUser.emit(this.loginTeamMember);
+  login(value?: string) {
+    if (value === 'admin') {
+      this.loginUser.emit({ userName: 'Admin', password: 'GuestAdmin' });
+    }
+    if (value === 'mod') {
+      this.loginUser.emit({
+        userName: 'Mod',
+        password: 'GuestMod',
+      });
+    } else {
+      this.loginUser.emit(this.loginTeamMember);
+    }
   }
 }
