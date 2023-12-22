@@ -204,18 +204,30 @@ export class PryazMeetingUiDetailComponent {
     );
   }
 
+  editValues() {
+    this.editMeeting = {
+      title: this.specificMeeting?.title,
+      status: this.specificMeeting?.status,
+      description: this.specificMeeting?.description,
+      meetingTime: this.timestamp.getIsoDateFromTimestamp(
+        this.specificMeeting!.meetingTime,
+      ),
+    };
+  }
+
   dialogDelete() {
     this.dialogDeleteMeeting.emit();
   }
 
   async saveEditMeeting() {
-    this.toggleEditMeeting();
     this.editSaveMeeting.emit(this.editMeeting);
+    this.toggleEditMeeting();
   }
 
   toggleEditMeeting() {
     if (this.editToggleMeeting) {
       this.editToggleMeeting = false;
+      this.editValues();
     } else {
       this.editToggleMeeting = true;
     }

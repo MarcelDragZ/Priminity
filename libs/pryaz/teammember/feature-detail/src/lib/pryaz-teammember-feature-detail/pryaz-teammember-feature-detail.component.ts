@@ -24,6 +24,7 @@ import {
     [specificTeamMember]="specificTeamMember$ | async"
     [memberList]="memberList$ | async"
     [teamMemberId]="teamMemberId"
+    (emitTeamMember)="saveEditTeamMember($event)"
   />`,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,6 +56,10 @@ export class PryazTeammemberFeatureDetailComponent implements OnDestroy {
         return Object.entries(members ?? {});
       }),
     );
+
+  async saveEditTeamMember(editTeamMember: Partial<TeamMemberInterface>) {
+    await this.teamMember.updateItem(this.teamMemberId, editTeamMember);
+  }
 
   ngOnDestroy(): void {
     if (this.activeRouteSubscription) {

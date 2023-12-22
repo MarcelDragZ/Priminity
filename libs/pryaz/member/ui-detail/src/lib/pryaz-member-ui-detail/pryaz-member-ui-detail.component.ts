@@ -482,27 +482,7 @@ export class PryazMemberUiDetailComponent {
   @Input() set specificMember(value: MemberInterface | null) {
     this._specificMember = value;
     if (value && !this.editToggleMember) {
-      this.editMember = {
-        userName: value.userName,
-        name: value.name,
-        age: value.age,
-        countryState: value.countryState,
-        steamLink: value.steamLink,
-        rank: value.rank,
-        faceitRank: value.faceitRank,
-        tsId: value.tsId,
-        info: value.info,
-        trialState: {
-          type: value.trialState.type,
-          typeChangeTime: value.trialState.typeChangeTime,
-          trialEndTime: value.trialState.trialEndTime
-            ? value.trialState.trialEndTime
-            : null,
-          trialPhases: value.trialState.trialPhases,
-          trialPhasesExtended: value.trialState.trialPhasesExtended,
-          reason: value.trialState.reason,
-        },
-      };
+      this.editValues();
     }
   }
   get specificMember(): MemberInterface | null {
@@ -517,14 +497,40 @@ export class PryazMemberUiDetailComponent {
   editToggleMember = false;
   editToggleStatus = false;
 
+  editValues() {
+    this.editMember = {
+      userName: this.specificMember?.userName,
+      name: this.specificMember?.name,
+      age: this.specificMember?.age,
+      countryState: this.specificMember?.countryState,
+      steamLink: this.specificMember?.steamLink,
+      rank: this.specificMember?.rank,
+      faceitRank: this.specificMember?.faceitRank,
+      tsId: this.specificMember?.tsId,
+      info: this.specificMember?.info,
+      trialState: {
+        type: this.specificMember!.trialState.type,
+        typeChangeTime: this.specificMember!.trialState.typeChangeTime,
+        trialEndTime: this.specificMember?.trialState.trialEndTime
+          ? this.specificMember?.trialState.trialEndTime
+          : null,
+        trialPhases: this.specificMember!.trialState.trialPhases,
+        trialPhasesExtended:
+          this.specificMember!.trialState.trialPhasesExtended,
+        reason: this.specificMember?.trialState.reason,
+      },
+    };
+  }
+
   async saveEditMember() {
-    this.toggleEditMember();
     this.editSaveMember.emit(this.editMember);
+    this.toggleEditMember();
   }
 
   toggleEditMember() {
     if (this.editToggleMember) {
       this.editToggleMember = false;
+      this.editValues();
     } else {
       this.editToggleMember = true;
     }
@@ -533,6 +539,7 @@ export class PryazMemberUiDetailComponent {
   toggleEditStatus() {
     if (this.editToggleStatus) {
       this.editToggleStatus = false;
+      this.editValues();
     } else {
       this.editToggleStatus = true;
     }

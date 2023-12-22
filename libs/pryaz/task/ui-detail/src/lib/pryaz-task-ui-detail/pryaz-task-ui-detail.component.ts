@@ -156,11 +156,7 @@ export class PryazTaskUiDetailComponent {
   @Input() set specificTask(value: TaskInterface | null) {
     this._specificTask = value;
     if (value && !this.editToggleTask) {
-      this.editTask = {
-        title: value.title,
-        status: value.status,
-        description: value.description,
-      };
+      this.editValues();
     }
   }
   get specificTask(): TaskInterface | null {
@@ -180,18 +176,27 @@ export class PryazTaskUiDetailComponent {
     );
   }
 
+  editValues() {
+    this.editTask = {
+      title: this.specificTask?.title,
+      status: this.specificTask?.status,
+      description: this.specificTask?.description,
+    };
+  }
+
   dialogDelete() {
     this.dialogDeleteTask.emit();
   }
 
   async saveEditTask() {
-    this.toggleEditTask();
     this.editSaveTask.emit(this.editTask);
+    this.toggleEditTask();
   }
 
   toggleEditTask() {
     if (this.editToggleTask) {
       this.editToggleTask = false;
+      this.editValues();
     } else {
       this.editToggleTask = true;
     }

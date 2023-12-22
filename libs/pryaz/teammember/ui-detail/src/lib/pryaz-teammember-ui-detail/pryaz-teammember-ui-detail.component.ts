@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -108,7 +110,7 @@ import {
           </button>
           <button
             *ngIf="editProfile"
-            (click)="toggleEditProfile(false)"
+            (click)="toggleEditProfile()"
             class="bg-userColor w-2/4 rounded p-0.5 hover:opacity-80 transition-all"
           >
             Abbrechen
@@ -117,7 +119,7 @@ import {
         <div class="flex flex-col">
           <button
             *ngIf="!editProfile"
-            (click)="toggleEditProfile(true)"
+            (click)="toggleEditProfile()"
             class="bg-userColor rounded p-0.5 hover:opacity-80 transition-all"
           >
             Profil bearbeiten
@@ -332,6 +334,8 @@ export class PryazTeammemberUiDetailComponent implements OnChanges {
     return this._specificTeamMember;
   }
 
+  @Output() emitTeamMember = new EventEmitter<Partial<TeamMemberInterface>>();
+
   teamMember = new TeamMember();
 
   _specificTeamMember!: TeamMemberInterface | null;
@@ -349,20 +353,41 @@ export class PryazTeammemberUiDetailComponent implements OnChanges {
     }
   }
 
-  toggleEditProfile(toggle: boolean) {
-    this.editProfile = toggle;
+  editValues() {
+    this.editTeamMember = {
+      name: this.specificTeamMember?.name,
+      userName: this.specificTeamMember?.userName,
+      position: this.specificTeamMember?.position,
+      email: this.specificTeamMember?.email,
+      phone: this.specificTeamMember?.phone || null,
+      birth: this.specificTeamMember?.birth,
+      steamLink: this.specificTeamMember?.steamLink,
+      twitchLink: this.specificTeamMember?.twitchLink,
+      youtubeLink: this.specificTeamMember?.youtubeLink,
+      instagramLink: this.specificTeamMember?.instagramLink,
+      tiktokLink: this.specificTeamMember?.tiktokLink,
+    };
   }
 
-  async saveEditProfile() {
-    this.toggleEditProfile(false);
-    await this.teamMember.updateItem(this.teamMemberId, this.editTeamMember);
-  }
-
-  async toggleTeamMemberActive() {
-    if (this.specificTeamMember?.active === true) {
-      await this.teamMember.updateItem(this.teamMemberId, { active: false });
+  toggleEditProfile() {
+    if (this.editProfile) {
+      this.editProfile = false;
+      this.editValues();
     } else {
-      await this.teamMember.updateItem(this.teamMemberId, { active: true });
+      this.editProfile = true;
+    }
+  }
+
+  saveEditProfile() {
+    this.emitTeamMember.emit(this.editTeamMember);
+    this.toggleEditProfile();
+  }
+
+  toggleTeamMemberActive() {
+    if (this.specificTeamMember?.active === true) {
+      this.emitTeamMember.emit({ active: false });
+    } else {
+      this.emitTeamMember.emit({ active: true });
     }
   }
 }
