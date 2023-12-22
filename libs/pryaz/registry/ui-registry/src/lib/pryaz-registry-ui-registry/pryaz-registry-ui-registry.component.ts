@@ -14,11 +14,17 @@ import {
   RegCode,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
+import { SharedDirectivesRestrictNumbersDirective } from '@priminity/shared/directives/restrict-numbers';
 
 @Component({
   selector: 'priminity-pryaz-registry-ui-registry',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    SharedDirectivesRestrictNumbersDirective,
+  ],
   template: ` <div class="flex justify-center w-screen ">
     <div
       class="flex items-center flex-col border-userColor border-2 w-full md:w-6/12 rounded"
@@ -104,8 +110,9 @@ import {
             </div>
             <input
               class="border-userColor w-full border-b-2 p-2 rounded bg-transparent text-white placeholder:text-white"
-              type="number"
+              type="text"
               placeholder="Telefon"
+              priminityRestrictNumbers
               [(ngModel)]="newTeamMember.phone"
               name="phone"
               required

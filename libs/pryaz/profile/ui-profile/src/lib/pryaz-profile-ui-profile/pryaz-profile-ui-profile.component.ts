@@ -11,12 +11,20 @@ import {
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
 import { FormsModule } from '@angular/forms';
+
 import { ColorPickerModule } from 'ngx-color-picker';
+
+import { SharedDirectivesRestrictNumbersDirective } from '@priminity/shared/directives/restrict-numbers';
 
 @Component({
   selector: 'priminity-pryaz-profile-ui-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, ColorPickerModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ColorPickerModule,
+    SharedDirectivesRestrictNumbersDirective,
+  ],
   template: `
     <div
       class="flex justify-between flex-col md:flex-row  items-center m-5 border-userColor border-b-2 rounded"
@@ -115,8 +123,9 @@ import { ColorPickerModule } from 'ngx-color-picker';
           <span>Telefon:</span>
           <input
             class="bg-transparent border-b-2 border-userColor w-2/3 rounded mt-2 mb-4"
-            type="number"
+            type="text"
             name="editTeamMember.phone"
+            priminityRestrictNumbers
             [(ngModel)]="editTeamMember.phone"
           />
         </div>
@@ -305,6 +314,10 @@ export class PryazProfileUiProfileComponent implements OnChanges {
 
   toggleEditProfile(toggle: boolean) {
     this.editProfile = toggle;
+  }
+
+  test() {
+    console.log(this.editTeamMember.phone);
   }
 
   async saveEditProfile() {
