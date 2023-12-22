@@ -37,7 +37,7 @@ import { BehaviorSubject } from 'rxjs';
       </div>
       <div class="flex flex-col md:flex-row items-center w-full h-1/2">
         <div
-          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl mb-2"
+          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl mb-2 md:mb-0"
         >
           <div
             class="flex flex-col items-center justify-between w-2/3 md:h-1/3"
@@ -48,7 +48,7 @@ import { BehaviorSubject } from 'rxjs';
           </div>
         </div>
         <div
-          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl mb-2"
+          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl mb-2 md:mb-0"
         >
           <div
             class="flex flex-col items-center justify-between w-2/3 md:h-1/3"
@@ -60,7 +60,7 @@ import { BehaviorSubject } from 'rxjs';
           </div>
         </div>
         <div
-          class="flex items-center justify-center w-full md:w-1/3 md:mr-2 md:h-full h-screen border-2 border-userColor rounded-xl"
+          class="flex items-center justify-center w-full md:w-1/3 md:h-full h-screen border-2 border-userColor rounded-xl mb-2 md:mb-0"
         >
           <div
             class="flex flex-col items-center justify-between w-2/3 md:h-1/3"

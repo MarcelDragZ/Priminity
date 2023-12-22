@@ -39,7 +39,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
         *ngIf="activeTeamMember"
         (click)="toggleMenu(true)"
         [routerLink]="['/profile', activeTeamMember[0]]"
-        class="flex items-center justify-start pl-5 md:pl-0 md:justify-around cursor-pointer w-full bg-neutral-800 mt-5 rounded hover:bg-neutral-900 hover:transition-all "
+        class="flex items-center justify-start pl-4 md:pl-0 md:justify-around cursor-pointer w-full bg-neutral-800 mt-5 rounded hover:bg-neutral-900 hover:transition-all "
       >
         <div>
           <img

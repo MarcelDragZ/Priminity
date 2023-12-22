@@ -6,7 +6,7 @@
     *ngIf="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password' && !toggledMenu"
     src="/assets/img/burger_menu.png"></div>
 
-<div [class.hidden]="toggledMenu && !screenWidth"
+<div [class.hidden]="toggledMenu && screenWidth < 768"
   [class.ml-48]="router.url !== '/login' && router.url !== '/registry' && router.url !== '/forgot-password' && toggledMenu">
   <router-outlet />
 </div>

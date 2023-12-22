@@ -85,7 +85,7 @@ import {
                   : dialogEvent.action === 'accepted'
                     ? 'Akzeptieren'
                     : dialogEvent.action === 'extended'
-                      ? 'Verlänger'
+                      ? 'Verlängern'
                       : dialogEvent.action === 'rejected'
                         ? 'Ablehnen'
                         : dialogEvent.action === 'banned'

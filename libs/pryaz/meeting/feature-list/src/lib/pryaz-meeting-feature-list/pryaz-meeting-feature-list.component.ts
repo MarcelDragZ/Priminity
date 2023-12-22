@@ -121,7 +121,7 @@ export class PryazMeetingFeatureListComponent {
             return (
               this.getPositionRank(a[1].status) -
                 this.getPositionRank(b[1].status) ||
-              b[1].createdTime - a[1].createdTime
+              b[1].meetingTime - a[1].meetingTime
             );
           });
           if (filter !== 'all') {

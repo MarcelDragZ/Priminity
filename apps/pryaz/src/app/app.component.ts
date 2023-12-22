@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   teamMember = new TeamMember();
 
   toggledMenu = true;
-  screenWidth = true;
+  screenWidth!: number;
 
   rgbColor: { r: number; g: number; b: number } = {
     r: 255,
@@ -116,8 +116,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private checkScreenSize() {
+    if (window.innerWidth === this.screenWidth) {
+      return;
+    }
     this.toggledMenu = window.innerWidth > 768;
-    this.screenWidth = window.innerWidth > 768;
+    this.screenWidth = window.innerWidth;
+
     this.cdRef.detectChanges();
   }
 }
