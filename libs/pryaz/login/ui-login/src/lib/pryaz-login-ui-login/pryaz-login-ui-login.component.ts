@@ -15,7 +15,7 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
   selector: 'priminity-pryaz-login-ui-login',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  template: ` <div class="flex justify-center">
+  template: ` <div class="flex justify-center w-screen ">
     <div
       class="flex items-center flex-col border-userColor border-2 w-full md:w-6/12 rounded"
     >

@@ -26,7 +26,7 @@ import {
   template: `
     <priminity-pryaz-shared-welcome />
     <div
-      class="flex flex-col items-end md:flex-row md:justify-end text-white m-16"
+      class="flex flex-col items-end md:flex-row md:justify-end text-white p-16"
     >
       Not a PryaZ user?
       <a
@@ -36,7 +36,10 @@ import {
         Sign up</a
       >
     </div>
-    <priminity-pryaz-login-ui-login (loginUser)="login($event)" />
+
+    <div class="flex items-center -mt-40 h-screen w-screen">
+      <priminity-pryaz-login-ui-login (loginUser)="login($event)" />
+    </div>
   `,
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
