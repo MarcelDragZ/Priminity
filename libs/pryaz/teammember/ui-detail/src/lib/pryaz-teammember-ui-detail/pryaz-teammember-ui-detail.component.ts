@@ -39,14 +39,30 @@ import {
               <option selected value="{{ editTeamMember.position }}">
                 {{ editTeamMember.position }}
               </option>
-              <option *ngIf="editTeamMember.position !== 'Admin'" value="Admin">
+              <option
+                *ngIf="
+                  editTeamMember.position !== 'Admin' &&
+                  loggedTeamMember![1].position !== 'Supervisor' &&
+                  loggedTeamMember![1].position !== 'Head-Mod'
+                "
+                value="Admin"
+              >
                 Admin
               </option>
               <option
-                *ngIf="editTeamMember.position !== 'Supervisor'"
+                *ngIf="
+                  editTeamMember.position !== 'Supervisor' &&
+                  loggedTeamMember![1].position !== 'Head-Mod'
+                "
                 value="Supervisor"
               >
                 Supervisor
+              </option>
+              <option
+                *ngIf="editTeamMember.position !== 'Head-Mod'"
+                value="Head-Mod"
+              >
+                Head-Mod
               </option>
               <option
                 *ngIf="editTeamMember.position !== 'Manager'"
@@ -118,7 +134,18 @@ import {
         </div>
         <div class="flex flex-col">
           <button
-            *ngIf="!editProfile"
+            *ngIf="
+              (!editProfile &&
+                loggedTeamMember![1].position === 'Supervisor' &&
+                specificTeamMember?.position !== 'Admin') ||
+              (!editProfile &&
+                loggedTeamMember![1].position !== 'Supervisor' &&
+                loggedTeamMember![1].position !== 'Head-Mod') ||
+              (!editProfile &&
+                loggedTeamMember![1].position === 'Head-Mod' &&
+                specificTeamMember?.position !== 'Admin' &&
+                specificTeamMember?.position !== 'Supervisor')
+            "
             (click)="toggleEditProfile()"
             class="bg-userColor rounded p-0.5 hover:opacity-80 transition-all"
           >
@@ -126,6 +153,15 @@ import {
           </button>
           <button
             (click)="toggleTeamMemberActive()"
+            *ngIf="
+              (loggedTeamMember![1].position === 'Supervisor' &&
+                specificTeamMember?.position !== 'Admin') ||
+              (loggedTeamMember![1].position !== 'Supervisor' &&
+                loggedTeamMember![1].position !== 'Head-Mod') ||
+              (loggedTeamMember![1].position === 'Head-Mod' &&
+                specificTeamMember?.position !== 'Admin' &&
+                specificTeamMember?.position !== 'Supervisor')
+            "
             [ngClass]="
               specificTeamMember?.active ? 'bg-red-600' : 'bg-green-600'
             "
@@ -311,6 +347,7 @@ import {
 export class PryazTeammemberUiDetailComponent implements OnChanges {
   @Input() teamMemberId!: string;
   @Input() memberList!: [string, MemberInterface][] | null;
+  @Input() loggedTeamMember!: [string, TeamMemberInterface] | null;
   @Input() set specificTeamMember(value: TeamMemberInterface | null) {
     this._specificTeamMember = value;
     if (value && !this.editProfile) {

@@ -22,6 +22,7 @@ import {
   imports: [CommonModule, PryazTeammemberUiDetailComponent],
   template: ` <priminity-pryaz-teammember-ui-detail
     [specificTeamMember]="specificTeamMember$ | async"
+    [loggedTeamMember]="loggedTeamMember$ | async"
     [memberList]="memberList$ | async"
     [teamMemberId]="teamMemberId"
     (emitTeamMember)="saveEditTeamMember($event)"
@@ -56,6 +57,11 @@ export class PryazTeammemberFeatureDetailComponent implements OnDestroy {
         return Object.entries(members ?? {});
       }),
     );
+
+  readonly loggedTeamMember$: Observable<[string, TeamMemberInterface]> =
+    this.teamMember.syncValidTeamMember() as Observable<
+      [string, TeamMemberInterface]
+    >;
 
   async saveEditTeamMember(editTeamMember: Partial<TeamMemberInterface>) {
     await this.teamMember.updateItem(this.teamMemberId, editTeamMember);

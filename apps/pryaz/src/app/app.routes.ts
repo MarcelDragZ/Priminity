@@ -1,5 +1,9 @@
 import { Route } from '@angular/router';
 import { AdminLoggedInAuthGuard } from '@priminity/shared/auth-guards/admin-logged-in-auth-guard';
+import { SupervisorLoggedInAuthGuard } from '@priminity/shared/auth-guards/supervisor-logged-in-auth-guard';
+import { HeadModLoggedInAuthGuard } from '@priminity/shared/auth-guards/head-mod-logged-in-auth-guard';
+import { ManagerLoggedInAuthGuard } from '@priminity/shared/auth-guards/manager-logged-in-auth-guard';
+import { ModLoggedInAuthGuard } from '@priminity/shared/auth-guards/mod-logged-in-auth-guard';
 import { LoggedInAuthGuard } from '@priminity/shared/auth-guards/logged-in-auth-guard';
 import {
   ActiveRouteIdResolver,
@@ -57,7 +61,7 @@ export const appRoutes: Route[] = [
       import('@priminity/pryaz/teammember/shell').then(
         (m) => m.PryazTeammemberRoutes,
       ),
-    canActivate: [LoggedInAuthGuard, AdminLoggedInAuthGuard],
+    canActivate: [LoggedInAuthGuard, HeadModLoggedInAuthGuard],
   },
   {
     path: 'member',

@@ -163,14 +163,16 @@ export class PryazTeammemberFeatureListComponent {
         return 1;
       case 'Supervisor':
         return 2;
-      case 'Manager':
+      case 'Head-Mod':
         return 3;
-      case 'Mod':
+      case 'Manager':
         return 4;
-      case 'Trial-Mod':
+      case 'Mod':
         return 5;
-      default:
+      case 'Trial-Mod':
         return 6;
+      default:
+        return 7;
     }
   }
 

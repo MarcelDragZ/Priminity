@@ -139,12 +139,20 @@ import { TeamMemberInterface } from '@priminity/shared/environments/classes';
       </div>
 
       <div
-        *ngIf="activeTeamMember[1].position === 'Admin'"
+        *ngIf="
+          activeTeamMember[1].position === 'Admin' ||
+          activeTeamMember[1].position === 'Supervisor' ||
+          activeTeamMember[1].position === 'Head-Mod'
+        "
         class="border-b-2 border-neutral-500 border-opacity-20 mt-5"
       ></div>
 
       <div
-        *ngIf="activeTeamMember[1].position === 'Admin'"
+        *ngIf="
+          activeTeamMember[1].position === 'Admin' ||
+          activeTeamMember[1].position === 'Supervisor' ||
+          activeTeamMember[1].position === 'Head-Mod'
+        "
         class="flex flex-col ml-3 mr-3 mt-5"
       >
         <a

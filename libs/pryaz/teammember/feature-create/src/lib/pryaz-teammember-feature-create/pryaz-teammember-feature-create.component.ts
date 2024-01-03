@@ -53,6 +53,7 @@ import {
           </option>
           <option value="Admin">Admin</option>
           <option value="Supervisor">Supervisor</option>
+          <option value="Head-Mod">Head-Mod</option>
           <option value="Manager">Manager</option>
           <option value="Mod">Mod</option>
           <option value="Trial-Mod">Trial-Mod</option>
@@ -94,7 +95,7 @@ export class PryazTeammemberFeatureCreateComponent {
     .pipe(
       map((regCode) => {
         return Object.entries(regCode ?? {});
-      })
+      }),
     );
 
   createRegCode() {

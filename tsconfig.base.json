@@ -198,8 +198,20 @@
       "@priminity/shared/auth-guards/admin-logged-in-auth-guard": [
         "libs/shared/auth-guards/admin-logged-in-auth-guard/src/index.ts"
       ],
+      "@priminity/shared/auth-guards/head-mod-logged-in-auth-guard": [
+        "libs/shared/auth-guards/head-mod-logged-in-auth-guard/src/index.ts"
+      ],
       "@priminity/shared/auth-guards/logged-in-auth-guard": [
         "libs/shared/auth-guards/logged-in-auth-guard/src/index.ts"
+      ],
+      "@priminity/shared/auth-guards/manager-logged-in-auth-guard": [
+        "libs/shared/auth-guards/manager-logged-in-auth-guard/src/index.ts"
+      ],
+      "@priminity/shared/auth-guards/mod-logged-in-auth-guard": [
+        "libs/shared/auth-guards/mod-logged-in-auth-guard/src/index.ts"
+      ],
+      "@priminity/shared/auth-guards/supervisor-logged-in-auth-guard": [
+        "libs/shared/auth-guards/supervisor-logged-in-auth-guard/src/index.ts"
       ],
       "@priminity/shared/directives/restrict-numbers": [
         "libs/shared/directives/restrict-numbers/src/index.ts"
