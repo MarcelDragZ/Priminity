@@ -14,10 +14,15 @@ import {
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
+import { SharedDirectivesRestrictNumbersDirective } from '@priminity/shared/directives/restrict-numbers';
 @Component({
   selector: 'priminity-pryaz-teammember-ui-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedDirectivesRestrictNumbersDirective,
+  ],
   template: `
     <div
       class="flex justify-between flex-col md:flex-row  items-center m-5 border-userColor border-b-2 rounded"
@@ -200,8 +205,9 @@ import {
           <span>Telefon:</span>
           <input
             class="bg-transparent border-b-2 border-userColor w-2/3 rounded mt-2 mb-4"
-            type="number"
+            type="text"
             name="editTeamMember.phone"
+            priminityRestrictNumbers
             [(ngModel)]="editTeamMember.phone"
           />
         </div>

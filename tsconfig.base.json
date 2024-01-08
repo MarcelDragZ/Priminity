@@ -113,6 +113,9 @@
         "libs/pryaz/member/feature-list/src/index.ts"
       ],
       "@priminity/pryaz/member/shell": ["libs/pryaz/member/shell/src/index.ts"],
+      "@priminity/pryaz/member/ui-comment": [
+        "libs/pryaz/member/ui-comment/src/index.ts"
+      ],
       "@priminity/pryaz/member/ui-conversation-guide": [
         "libs/pryaz/member/ui-conversation-guide/src/index.ts"
       ],

@@ -2,10 +2,10 @@ import { RealtimeDatabase } from './class.realtimedatabase';
 
 export interface CommentInterface {
   creatorId: string;
-  createdTime: number;
+  createdTime: number | null;
   description: string;
   type: string;
-  memberId?: string;
+  memberId: string;
 }
 
 export class Comment extends RealtimeDatabase<CommentInterface> {

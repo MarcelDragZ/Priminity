@@ -11,6 +11,7 @@ import { Observable, map } from 'rxjs';
 import { PryazMemberUiDetailComponent } from '@priminity/pryaz/member/ui-detail';
 import { PryazSharedFullscreenDialogComponent } from '@priminity/pryaz/shared/fullscreen-dialog';
 import {
+  CommentInterface,
   DialogActionInterface,
   Member,
   MemberInterface,
@@ -18,6 +19,7 @@ import {
   TeamMemberInterface,
   Timestamp,
 } from '@priminity/shared/environments/classes';
+import { PryazMemberUiCommentComponent } from '@priminity/pryaz/member/ui-comment';
 
 @Component({
   selector: 'priminity-pryaz-member-feature-detail',
@@ -26,6 +28,7 @@ import {
     CommonModule,
     PryazMemberUiDetailComponent,
     PryazSharedFullscreenDialogComponent,
+    PryazMemberUiCommentComponent,
   ],
   template: `
     <ng-container *ngIf="specificMember$ | async as MemberInterface">
@@ -44,6 +47,19 @@ import {
         }"
         (emitDialogEvent)="dialogAction($event)"
       />
+
+      <div class="w-full border-b-2 border-userColor mb-5 mt-5"></div>
+
+      <div class="flex justify-between w-full">
+        <div class="w-full m-5">
+          <priminity-pryaz-member-ui-comment
+            [specificMember]="specificMember$ | async"
+            [specificTeamMember]="specificTeamMember$ | async"
+            [memberId]="memberId"
+            (emitComment)="saveComment($event)"
+          />
+        </div>
+      </div>
     </ng-container>
   `,
   styles: [],
@@ -257,5 +273,9 @@ export class PryazMemberFeatureDetailComponent implements OnDestroy {
         }),
       );
     }
+  }
+
+  async saveComment(comment: CommentInterface) {
+    await this.member.setCommentItem(this.memberId, comment);
   }
 }

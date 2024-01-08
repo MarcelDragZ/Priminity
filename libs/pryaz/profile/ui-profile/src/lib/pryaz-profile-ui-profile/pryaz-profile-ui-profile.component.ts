@@ -7,15 +7,15 @@ import {
   Output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { ColorPickerModule } from 'ngx-color-picker';
+
 import {
   MemberInterface,
   TeamMember,
   TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
-import { FormsModule } from '@angular/forms';
-
-import { ColorPickerModule } from 'ngx-color-picker';
-
 import { SharedDirectivesRestrictNumbersDirective } from '@priminity/shared/directives/restrict-numbers';
 
 @Component({

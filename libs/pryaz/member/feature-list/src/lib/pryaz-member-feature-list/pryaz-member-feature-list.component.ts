@@ -14,6 +14,7 @@ import { PryazMemberUiListComponent } from '@priminity/pryaz/member/ui-list';
 import {
   Member,
   MemberInterface,
+  Timestamp,
 } from '@priminity/shared/environments/classes';
 import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
 
@@ -108,6 +109,7 @@ import { PryazSharedHeadlineComponent } from '@priminity/pryaz/shared/headline';
 })
 export class PryazMemberFeatureListComponent {
   member = new Member();
+  timestamp = new Timestamp();
 
   sortFilter = '';
   searchFilter = '';

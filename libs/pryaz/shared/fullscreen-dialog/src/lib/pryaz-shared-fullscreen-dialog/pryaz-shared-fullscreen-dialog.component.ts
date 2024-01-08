@@ -3,13 +3,19 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnDestroy,
+  OnInit,
   Output,
+  Renderer2,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  CommentInterface,
   DialogActionInterface,
   DialogEventInterface,
+  TeamMember,
 } from '@priminity/shared/environments/classes';
 
 @Component({
@@ -47,8 +53,28 @@ import {
                           ? 'entbannen ?'
                           : dialogEvent.action === 'delete'
                             ? 'löschen ?'
-                            : ''
+                            : dialogEvent.action === 'edit'
+                              ? 'bearbeiten ?'
+                              : ''
           }}
+        </div>
+
+        <div
+          *ngIf="dialogEvent.action === 'delete' && specificInput"
+          class="flex flex-col justify-start items-center w-full h-2/3 m-5 mt-0"
+        >
+          <div class="w-full">
+            Kommentar von
+            {{ teamMember.getNameById(specificInput[1]!.creatorId) | async }}
+          </div>
+
+          <textarea
+            disabled
+            class="w-2/3 h-2/3 rounded border-userColor border-2 bg-transparent mt-2"
+            type="text"
+            name="dialogDescription"
+            [(ngModel)]="dialogDescription"
+          ></textarea>
         </div>
 
         <div
@@ -56,11 +82,14 @@ import {
             dialogEvent.action === 'leaved' ||
             dialogEvent.action === 'extended' ||
             dialogEvent.action === 'rejected' ||
-            dialogEvent.action === 'banned'
+            dialogEvent.action === 'banned' ||
+            dialogEvent.action === 'edit'
           "
           class="flex flex-col justify-start items-center w-full h-2/3 m-5 mt-0"
         >
-          <div class="w-full">Grund:</div>
+          <div class="w-full">
+            {{ dialogEvent.action === 'edit' ? 'Bearbeiten:' : 'Grund:' }}
+          </div>
 
           <textarea
             class="w-2/3 h-2/3 rounded border-userColor border-2 bg-transparent"
@@ -94,7 +123,9 @@ import {
                             ? 'Entbannen'
                             : dialogEvent.action === 'delete'
                               ? 'Löschen'
-                              : ''
+                              : dialogEvent.action === 'edit'
+                                ? 'Bearbeiten'
+                                : ''
             }}
           </button>
           <button
@@ -107,11 +138,31 @@ import {
       </div>
     </div>
   </div>`,
-  styles: [],
+  styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PryazSharedFullscreenDialogComponent {
+export class PryazSharedFullscreenDialogComponent implements OnInit, OnDestroy {
+  renderer: Renderer2 = inject(Renderer2);
+
+  teamMember = new TeamMember();
+
   @Input() dialogEvent!: DialogEventInterface;
+
+  @Input() set specificInput(value: [string, CommentInterface] | null) {
+    this._specificInput = value;
+    if (value) {
+      this.dialogDescription = value[1].description;
+      // this.editSpecificInput = {
+      //   description: value[1].description,
+      // };
+    }
+  }
+  get specificInput(): Partial<[string, CommentInterface]> | null {
+    return this._specificInput;
+  }
+
+  _specificInput!: Partial<[string, CommentInterface]> | null;
+  //editSpecificInput: Partial<CommentInterface> = {};
 
   @Output() emitDialogEvent = new EventEmitter<DialogActionInterface>();
 
@@ -122,5 +173,18 @@ export class PryazSharedFullscreenDialogComponent {
       action: action,
       description: this.dialogDescription ? this.dialogDescription : '',
     });
+  }
+
+  ngOnInit() {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+    this.renderer.setStyle(document.body, 'overflow', 'hidden');
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeStyle(document.body, 'overflow');
   }
 }

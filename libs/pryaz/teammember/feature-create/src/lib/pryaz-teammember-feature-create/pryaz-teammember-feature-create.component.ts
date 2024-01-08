@@ -3,6 +3,7 @@ import {
   Component,
   ChangeDetectorRef,
   inject,
+  OnDestroy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +14,8 @@ import { PryazTeammemberUiCreateComponent } from '@priminity/pryaz/teammember/ui
 import {
   RegCode,
   RegCodeInterface,
+  TeamMember,
+  TeamMemberInterface,
 } from '@priminity/shared/environments/classes';
 
 @Component({
@@ -51,9 +54,31 @@ import {
           >
             Wähle Rang
           </option>
-          <option value="Admin">Admin</option>
-          <option value="Supervisor">Supervisor</option>
-          <option value="Head-Mod">Head-Mod</option>
+          <option
+            *ngIf="activeTeamMember[1].position === 'Admin'"
+            value="Admin"
+          >
+            Admin
+          </option>
+          <option
+            *ngIf="
+              activeTeamMember[1].position === 'Admin' ||
+              activeTeamMember[1].position === 'Supervisor'
+            "
+            value="Supervisor"
+          >
+            Supervisor
+          </option>
+          <option
+            *ngIf="
+              activeTeamMember[1].position === 'Admin' ||
+              activeTeamMember[1].position === 'Supervisor' ||
+              activeTeamMember[1].position === 'Head-Mod'
+            "
+            value="Head-Mod"
+          >
+            Head-Mod
+          </option>
           <option value="Manager">Manager</option>
           <option value="Mod">Mod</option>
           <option value="Trial-Mod">Trial-Mod</option>
@@ -81,14 +106,16 @@ import {
   styles: [``],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PryazTeammemberFeatureCreateComponent {
+export class PryazTeammemberFeatureCreateComponent implements OnDestroy {
   cdRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   selectDialog = false;
   noSelectedInput = false;
   selectedRank = 'Wähle Rang';
+  activeTeamMember!: [string, TeamMemberInterface];
 
   regCode = new RegCode();
+  teamMember = new TeamMember();
 
   regCodeList$: Observable<[string, RegCodeInterface][]> | null = this.regCode
     .getItems$()
@@ -97,6 +124,19 @@ export class PryazTeammemberFeatureCreateComponent {
         return Object.entries(regCode ?? {});
       }),
     );
+
+  readonly loggedTeamMember$: Observable<[string, TeamMemberInterface]> =
+    this.teamMember.syncValidTeamMember() as Observable<
+      [string, TeamMemberInterface]
+    >;
+
+  loggedTeamMemberSubscription = this.loggedTeamMember$.subscribe((data) => {
+    this.activeTeamMember = data;
+  });
+
+  ngOnDestroy(): void {
+    this.loggedTeamMemberSubscription.unsubscribe();
+  }
 
   createRegCode() {
     if (this.selectedRank === 'Wähle Rang') {

@@ -4,6 +4,7 @@ import { RealtimeDatabase } from './class.realtimedatabase';
 import { CommentInterface } from './class.comment';
 import { UpdateBarInterface } from './class.updatebar';
 import { TrialStateInterface } from './class.trialstate';
+import { map } from 'rxjs';
 
 export interface MemberInterface {
   creatorId: string;
@@ -42,6 +43,10 @@ export class Member extends RealtimeDatabase<MemberInterface> {
     );
   }
 
+  async deleteCommentSection(databaseId: string) {
+    await remove(ref(this.db, `${this.dataBaseValue}/${databaseId}/comments/`));
+  }
+
   async updateCommentItem(
     databaseId: string,
     commentId: string,
@@ -51,5 +56,21 @@ export class Member extends RealtimeDatabase<MemberInterface> {
       ref(this.db, `${this.dataBaseValue}/${databaseId}/comments/` + commentId),
       item,
     );
+  }
+
+  getNameById(memberId: string) {
+    if (memberId) {
+      return this.getSpecificItem$(memberId).pipe(
+        map((member: MemberInterface) => {
+          if (member) {
+            return member.userName;
+          } else {
+            return null;
+          }
+        }),
+      );
+    } else {
+      return null;
+    }
   }
 }
